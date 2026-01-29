@@ -1,0 +1,83 @@
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ShoppingBag, Shield, Droplets, Heart } from "lucide-react";
+import heroImage from "@/assets/hero-lifestyle.jpg";
+
+const HeroSection = () => {
+  return (
+    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroImage}
+          alt="Woman relaxing comfortably"
+          className="w-full h-full object-cover object-center opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+      </div>
+
+      <div className="container mx-auto px-4 pt-24 pb-16 md:pt-32 md:pb-24 relative z-10">
+        <div className="max-w-2xl">
+          {/* Trust Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush-light/80 backdrop-blur-sm text-warm-brown text-sm font-medium mb-6 animate-fade-in-up">
+            <Shield className="w-4 h-4" />
+            Trusted by 50,000+ Women
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-hero text-foreground animate-fade-in-up animation-delay-100">
+            Feel Confident.
+            <br />
+            <span className="text-primary">Stay Protected.</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-hero-sub mt-6 max-w-lg animate-fade-in-up animation-delay-200">
+            Ultra-thin, leak-proof period underwear designed for your comfort. 
+            Forget the stress — embrace your freedom.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-fade-in-up animation-delay-300">
+            <Link to="/product">
+              <Button variant="hero" size="xl">
+                <ShoppingBag className="w-5 h-5" />
+                Shop Now
+              </Button>
+            </Link>
+            <a href="#how-it-works">
+              <Button variant="outline" size="xl">
+                Learn More
+              </Button>
+            </a>
+          </div>
+
+          {/* Quick Benefits */}
+          <div className="flex flex-wrap gap-6 mt-10 animate-fade-in-up animation-delay-400">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Droplets className="w-4 h-4 text-primary" />
+              Leak-Proof Protection
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Heart className="w-4 h-4 text-primary" />
+              All-Day Comfort
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Shield className="w-4 h-4 text-primary" />
+              Free Shipping
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse-soft">
+        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
+          <div className="w-1.5 h-3 rounded-full bg-muted-foreground/50" />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
