@@ -8,6 +8,8 @@ import Product from "./pages/Product";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
+import HowItWorks from "./pages/HowItWorks";
+import Reviews from "./pages/Reviews";
 import Privacy from "./pages/Privacy";
 import Refund from "./pages/Refund";
 import Shipping from "./pages/Shipping";
@@ -27,6 +29,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/reviews" element={<Reviews />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/refund" element={<Refund />} />
           <Route path="/shipping" element={<Shipping />} />

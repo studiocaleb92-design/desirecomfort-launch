@@ -14,8 +14,8 @@ const Header = () => {
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
     { href: "/faq", label: "FAQ" },
-    { href: "#how-it-works", label: "How It Works" },
-    { href: "#reviews", label: "Reviews" },
+    { href: "/how-it-works", label: "How It Works" },
+    { href: "/reviews", label: "Reviews" },
   ];
 
   return (
@@ -41,9 +41,7 @@ const Header = () => {
                 to={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  location.pathname === link.href
-                    ? "text-foreground"
-                    : "text-muted-foreground"
+                  location.pathname === link.href ? "text-foreground" : "text-muted-foreground"
                 )}
               >
                 {link.label}

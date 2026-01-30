@@ -45,11 +45,11 @@ const HeroSection = () => {
                 Shop Now
               </Button>
             </Link>
-            <a href="#how-it-works">
+            <Link to="/how-it-works">
               <Button variant="outline" size="xl">
                 Learn More
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Quick Benefits */}
