@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "download-store-images": "node scripts/download-store-images.js",
+    "download-everdries-images": "node scripts/download-everdries-images.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

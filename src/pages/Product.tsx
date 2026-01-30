@@ -27,13 +27,37 @@ const colors = [
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
 ];
 
+// Local videos (uploaded to public/videos) — filename encoded in src for spaces/parentheses
+const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
+  { filename: "FDownloader.Net_AQOMe06JL1S0JuWve6X9wcBaecBBpTHUvLsOfsOvWzFn-lmb_6XT9SB3EyeKv1nRo9XA2SDTdndE1nbkK9z7Afu_FPZclFM6PdeY977NnN7Kow_720p_(HD).mp4", title: "How it works" },
+  { filename: "FDownloader.net-2142650612827084-(1080p) (1).mp4", title: "Comfort & protection" },
+  { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
+];
+
+// Per-color images: Everdries (pnpm run download-everdries-images). Fallback when image 404s.
+const COLOR_IMAGES_SRC: Record<string, string[]> = {
+  "Blush Pink": ["/images/blush-pink.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Dusty Rose": ["/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Cream": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Black": ["/images/black.jpg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
+};
+const FALLBACK_BY_COLOR: Record<string, string[]> = {
+  "Blush Pink": ["/images/blush-pink.jpg", productHero, productVariants],
+  "Dusty Rose": ["/images/dusty-rose.jpg", productHero, productVariants],
+  "Cream": ["/images/cream.jpg", productHero, productVariants],
+  "Black": ["/images/black.jpg", productHero, productVariants],
+};
+const COLOR_IMAGES = COLOR_IMAGES_SRC;
+const FALLBACK_IMAGES = [productHero, productVariants, productHero];
+
 const Product = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
 
-  const images = [productHero, productVariants];
+  const images = COLOR_IMAGES[selectedColor] ?? FALLBACK_IMAGES;
+  const fallbackImages = FALLBACK_BY_COLOR[selectedColor] ?? FALLBACK_IMAGES;
 
   const price = 34.99;
   const comparePrice = 45.00;
@@ -42,7 +66,7 @@ const Product = () => {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="pt-20 md:pt-24">
+      <main className="pt-24 md:pt-28">
         <div className="container mx-auto px-4 py-8 md:py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Product Images */}
@@ -50,20 +74,31 @@ const Product = () => {
               <div className="aspect-square rounded-2xl overflow-hidden bg-cream-dark">
                 <img
                   src={images[activeImage]}
-                  alt="DesireComfort Period Underwear"
+                  alt={`DesireComfort Period Underwear — ${selectedColor}`}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const el = e.currentTarget;
+                    if (fallbackImages[activeImage]) el.src = fallbackImages[activeImage];
+                  }}
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin">
                 {images.map((img, index) => (
                   <button
-                    key={index}
+                    key={`${selectedColor}-${index}`}
                     onClick={() => setActiveImage(index)}
-                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
-                      activeImage === index ? "border-primary" : "border-transparent"
+                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
+                      activeImage === index ? "border-primary ring-2 ring-primary/30" : "border-transparent hover:border-muted-foreground/30"
                     }`}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
+                    <img
+                      src={img}
+                      alt={`View ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        if (fallbackImages[index]) e.currentTarget.src = fallbackImages[index];
+                      }}
+                    />
                   </button>
                 ))}
               </div>
@@ -134,7 +169,10 @@ const Product = () => {
                   {colors.map((color) => (
                     <button
                       key={color.name}
-                      onClick={() => setSelectedColor(color.name)}
+                      onClick={() => {
+                        setSelectedColor(color.name);
+                        setActiveImage(0);
+                      }}
                       className={`w-10 h-10 rounded-full ${color.class} transition-all ${
                         selectedColor === color.name
                           ? "ring-2 ring-primary ring-offset-2"
@@ -227,6 +265,28 @@ const Product = () => {
                   </div>
                   <p className="text-xs text-muted-foreground">Secure<br />Checkout</p>
                 </div>
+              </div>
+
+              {/* Local videos (public/videos) */}
+              <div className="mt-8 pt-8 border-t border-border space-y-10">
+                {PRODUCT_VIDEO_FILES.map((video, index) => (
+                  <div key={video.filename + index}>
+                    <h3 className="font-serif text-lg font-medium text-foreground mb-2">
+                      {video.title}
+                    </h3>
+                    <div className="aspect-video rounded-xl overflow-hidden bg-muted mt-2">
+                      <video
+                        src={`/videos/${encodeURIComponent(video.filename)}`}
+                        controls
+                        className="w-full h-full object-contain"
+                        preload="metadata"
+                        playsInline
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Product Details Accordion */}

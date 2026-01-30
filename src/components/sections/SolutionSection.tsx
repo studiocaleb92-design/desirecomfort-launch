@@ -3,17 +3,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import productImage from "@/assets/product-hero.jpg";
 
+const SOLUTION_IMAGE = "/images/everdries-gallery-1.jpg";
+
 const SolutionSection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
+          {/* Image (Everdries; fallback: assets) */}
           <div className="order-2 lg:order-1 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
               <img
-                src={productImage}
+                src={SOLUTION_IMAGE}
                 alt="DesireComfort period underwear"
+                onError={(e) => { e.currentTarget.src = productImage; }}
                 className="w-full h-auto object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 to-transparent" />

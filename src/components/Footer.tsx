@@ -46,7 +46,7 @@ const Footer = () => {
             <h4 className="font-serif text-lg font-medium mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-3">
               <Link to="/product" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Shop
+                Order Now
               </Link>
               <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 How It Works
@@ -54,9 +54,9 @@ const Footer = () => {
               <a href="#reviews" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Reviews
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 FAQ
-              </a>
+              </Link>
             </nav>
           </div>
 
@@ -64,18 +64,18 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg font-medium mb-4">Support</h4>
             <nav className="flex flex-col gap-3">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/shipping" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Shipping Info
-              </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              </Link>
+              <Link to="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Returns
-              </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              </Link>
+              <a href="/product#size-guide" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Size Guide
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact Us
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
@@ -86,12 +86,12 @@ const Footer = () => {
             © {new Date().getFullYear()} DesireComfort. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              Terms of Service
-            </a>
+            </Link>
+            <Link to="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Refund Policy
+            </Link>
           </div>
         </div>
       </div>

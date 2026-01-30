@@ -10,13 +10,20 @@ const Header = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/product", label: "Shop" },
+    { href: "/product", label: "Order Now" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact Us" },
+    { href: "/faq", label: "FAQ" },
     { href: "#how-it-works", label: "How It Works" },
     { href: "#reviews", label: "Reviews" },
   ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+      {/* Announcement bar — matches reference site */}
+      <div className="bg-primary/10 text-foreground text-center py-2 px-4 text-sm font-medium">
+        ✈️ FREE SHIPPING WORLDWIDE ✈️
+      </div>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
