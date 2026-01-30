@@ -26,23 +26,25 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-hero text-foreground animate-fade-in-up animation-delay-100">
-            Feel Confident.
-            <br />
-            <span className="text-primary">Stay Protected.</span>
+            Leak-Free Comfort You Can Trust
           </h1>
 
           {/* Subheadline */}
           <p className="text-hero-sub mt-6 max-w-lg animate-fade-in-up animation-delay-200">
-            Ultra-thin, leak-proof period underwear designed for your comfort. 
-            Forget the stress — embrace your freedom.
+            Feel confident, protected, and comfortable — day and night.
+          </p>
+
+          {/* Trust line */}
+          <p className="text-sm text-muted-foreground mt-2 animate-fade-in-up animation-delay-300">
+            Designed for comfort & leak protection.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 animate-fade-in-up animation-delay-300">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 animate-fade-in-up animation-delay-300">
             <Link to="/product">
               <Button variant="hero" size="xl">
                 <ShoppingBag className="w-5 h-5" />
-                Shop Now
+                Get Leak-Free Comfort
               </Button>
             </Link>
             <Link to="/how-it-works">
