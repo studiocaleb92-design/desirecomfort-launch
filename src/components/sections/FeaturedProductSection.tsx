@@ -116,12 +116,14 @@ const FeaturedProductSection = () => {
               </div>
             </div>
 
-            <Link to="/product">
-              <Button variant="hero" size="xl">
-                <ShoppingBag className="w-5 h-5" />
-                Order Now
-              </Button>
-            </Link>
+            <div className="mt-6">
+              <Link to="/product">
+                <Button variant="hero" size="xl">
+                  <ShoppingBag className="w-5 h-5" />
+                  Order Now
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

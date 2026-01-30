@@ -14,7 +14,7 @@ const Header = () => {
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
     { href: "/faq", label: "FAQ" },
-    { href: "/how-it-works", label: "How It Works" },
+    { href: "/#how-it-works", label: "How It Works" },
     { href: "/reviews", label: "Reviews" },
   ];
 
@@ -27,8 +27,9 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src="/logo.svg" alt="DesireComfort" className="h-6 md:h-7 w-auto" width="170" height="21" />
+          <Link to="/" className="flex items-center gap-2">
+            <img src="/logo.png" alt="" className="h-8 w-auto" width="136" height="32" />
+            <span className="text-sm md:text-base tracking-[0.2em] font-medium text-foreground">DesireComfort</span>
           </Link>
 
           {/* Desktop Navigation */}

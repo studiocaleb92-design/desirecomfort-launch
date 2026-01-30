@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Shield, Droplets, Heart } from "lucide-react";
 import heroImage from "@/assets/hero-lifestyle.jpg";
@@ -26,12 +25,12 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-hero text-foreground animate-fade-in-up animation-delay-100">
-            Leak-Free Comfort You Can Trust
+            Leak-Proof <span className="text-primary">Period Panties</span> That Feels Like Real Underwear
           </h1>
 
           {/* Subheadline */}
           <p className="text-hero-sub mt-6 max-w-lg animate-fade-in-up animation-delay-200">
-            Feel confident, protected, and comfortable — day and night.
+            Get soft, breathable period panties designed to replace pads and tampons without bulk, discomfort, or leaks.
           </p>
 
           {/* Trust line */}
@@ -39,19 +38,14 @@ const HeroSection = () => {
             Designed for comfort & leak protection.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4 animate-fade-in-up animation-delay-300">
-            <Link to="/product">
+          {/* CTA */}
+          <div className="mt-4 animate-fade-in-up animation-delay-300">
+            <a href="#order">
               <Button variant="hero" size="xl">
                 <ShoppingBag className="w-5 h-5" />
-                Get Leak-Free Comfort
+                BUY NOW
               </Button>
-            </Link>
-            <Link to="/how-it-works">
-              <Button variant="outline" size="xl">
-                Learn More
-              </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Quick Benefits */}
