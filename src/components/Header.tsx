@@ -28,9 +28,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <span className="text-sm md:text-base tracking-[0.3em] font-medium text-foreground">
-              D E S I R E C O M F O R T
-            </span>
+            <img src="/logo.svg" alt="DesireComfort" className="h-6 md:h-7 w-auto" width="170" height="21" />
           </Link>
 
           {/* Desktop Navigation */}
