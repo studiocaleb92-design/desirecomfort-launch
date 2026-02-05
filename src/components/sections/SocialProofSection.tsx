@@ -40,7 +40,7 @@ const trustBadges = [
 
 const SocialProofSection = () => {
   return (
-    <section id="reviews" className="section-padding bg-background">
+    <section id="reviews" className="section-padding bg-background scroll-mt-[11rem]">
       <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">

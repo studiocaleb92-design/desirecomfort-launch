@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const About = () => {
+  useEffect(() => {
+    const el = document.getElementById("page-content");
+    if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 md:pt-28">
-        <div className="container mx-auto px-4 py-12 md:py-20">
+      <main className="pt-36 md:pt-44 pb-16">
+        <div id="page-content" className="container mx-auto px-4 py-12 md:py-20 scroll-mt-[11rem]">
           <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
             About DesireComfort
           </h1>

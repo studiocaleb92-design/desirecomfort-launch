@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import productHero from "@/assets/product-hero.jpg";
+import { getCompareAtPrice, getSavings } from "@/lib/utils";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
 const colors = [
@@ -31,7 +32,8 @@ const FeaturedProductSection = () => {
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
   const [selectedSize, setSelectedSize] = useState("M");
   const price = 34.99;
-  const comparePrice = 45.0;
+  const compareAt = getCompareAtPrice(price);
+  const savings = getSavings(compareAt, price);
   const featuredImage = COLOR_IMAGE[selectedColor] ?? "/images/blush-pink.jpg";
   const featuredFallback = FALLBACK_IMAGE_BY_COLOR[selectedColor] ?? productHero;
 
@@ -53,20 +55,27 @@ const FeaturedProductSection = () => {
               alt={`DesireComfort 4-Layer Leakproof Panties — ${selectedColor}`}
               className="w-full h-full object-cover"
               onError={(e) => {
-                e.currentTarget.src = featuredFallback;
+                const el = e.currentTarget;
+                if (!el.dataset.fallback) {
+                  el.dataset.fallback = "1";
+                  el.src = productHero;
+                }
               }}
             />
           </div>
           <div className="space-y-6">
-            <div className="flex items-baseline gap-3">
+            <div className="flex flex-wrap items-baseline gap-3">
               <span className="text-2xl md:text-3xl font-medium text-foreground">
-                ${price}
+                ${price.toFixed(2)}
               </span>
               <span className="text-lg text-muted-foreground line-through">
-                ${comparePrice}
+                ${compareAt.toFixed(2)}
+              </span>
+              <span className="text-sm font-medium bg-[#C8A24A]/15 text-[#C8A24A] px-2 py-1 rounded">
+                30% OFF
               </span>
               <span className="text-sm font-medium text-success bg-success/10 px-2 py-1 rounded">
-                Save ${(comparePrice - price).toFixed(2)}
+                Save ${savings.toFixed(2)}
               </span>
             </div>
             <ul className="text-muted-foreground space-y-2 text-sm">

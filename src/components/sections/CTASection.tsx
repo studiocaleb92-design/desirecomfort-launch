@@ -23,7 +23,7 @@ const CTASection = () => {
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-            <Link to="/product">
+            <Link to="/#order">
               <Button variant="hero" size="xl">
                 <ShoppingBag className="w-5 h-5" />
                 Shop Now

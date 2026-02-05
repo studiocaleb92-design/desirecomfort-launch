@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import productHero from "@/assets/product-hero.jpg";
 import productVariants from "@/assets/product-variants.jpg";
+import { getCompareAtPrice, getSavings, roundToTwoDecimals } from "@/lib/utils";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
 const colors = [
@@ -42,25 +43,38 @@ const COLOR_IMAGES_SRC: Record<string, string[]> = {
   "Black": ["/images/black.jpg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
 };
 const FALLBACK_BY_COLOR: Record<string, string[]> = {
-  "Blush Pink": ["/images/blush-pink.jpg", productHero, productVariants],
-  "Dusty Rose": ["/images/dusty-rose.jpg", productHero, productVariants],
-  "Cream": ["/images/cream.jpg", productHero, productVariants],
-  "Black": ["/images/black.jpg", productHero, productVariants],
+  "Blush Pink": [productHero, productVariants, "/images/blush-pink.jpg"],
+  "Dusty Rose": [productHero, productVariants, "/images/dusty-rose.jpg"],
+  "Cream": [productHero, productVariants, "/images/cream.jpg"],
+  "Black": [productHero, productVariants, "/images/black.jpg"],
 };
 const COLOR_IMAGES = COLOR_IMAGES_SRC;
 const FALLBACK_IMAGES = [productHero, productVariants, productHero];
 
+const UNIT_PRICE = 34.99;
+const BUNDLE_SIZES = [
+  { label: "1", qty: 1 },
+  { label: "10-Pack", qty: 10 },
+  { label: "15-Pack", qty: 15 },
+  { label: "20-Pack", qty: 20 },
+] as const;
+
 const Product = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
-  const [quantity, setQuantity] = useState(1);
+  const [bundleQty, setBundleQty] = useState(10);
   const [activeImage, setActiveImage] = useState(0);
 
   const images = COLOR_IMAGES[selectedColor] ?? FALLBACK_IMAGES;
   const fallbackImages = FALLBACK_BY_COLOR[selectedColor] ?? FALLBACK_IMAGES;
 
-  const price = 34.99;
-  const comparePrice = 45.00;
+  const quantity = bundleQty;
+  const price = UNIT_PRICE;
+  const compareAtUnit = getCompareAtPrice(price);
+  const savingsUnit = getSavings(compareAtUnit, price);
+  const totalPrice = roundToTwoDecimals(price * quantity);
+  const totalCompareAt = roundToTwoDecimals(compareAtUnit * quantity);
+  const totalSavings = getSavings(totalCompareAt, totalPrice);
 
   return (
     <div className="min-h-screen bg-background">
@@ -78,7 +92,10 @@ const Product = () => {
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const el = e.currentTarget;
-                    if (fallbackImages[activeImage]) el.src = fallbackImages[activeImage];
+                    if (!el.dataset.fallback) {
+                      el.dataset.fallback = "1";
+                      el.src = productHero;
+                    }
                   }}
                 />
               </div>
@@ -127,14 +144,37 @@ const Product = () => {
                 <span className="text-sm text-muted-foreground">4.9 (2,500+ reviews)</span>
               </div>
 
-              {/* Price */}
-              <div className="flex items-baseline gap-3 mt-6">
-                <span className="text-3xl font-medium text-foreground">${price}</span>
-                <span className="text-lg text-muted-foreground line-through">${comparePrice}</span>
-                <span className="text-sm font-medium text-success bg-success/10 px-2 py-1 rounded">
-                  Save ${(comparePrice - price).toFixed(2)}
-                </span>
+              {/* Price — per unit and bundle total */}
+              <div className="flex flex-wrap items-baseline gap-3 mt-6">
+                <span className="text-3xl font-medium text-foreground">${totalPrice.toFixed(2)}</span>
+                {quantity > 1 && (
+                  <>
+                    <span className="text-lg text-muted-foreground line-through">${totalCompareAt.toFixed(2)}</span>
+                    <span className="text-sm font-medium bg-[#C8A24A]/15 text-[#C8A24A] px-2 py-1 rounded">
+                      30% OFF
+                    </span>
+                    <span className="text-sm font-medium text-success bg-success/10 px-2 py-1 rounded">
+                      Save ${totalSavings.toFixed(2)}
+                    </span>
+                  </>
+                )}
+                {quantity === 1 && (
+                  <>
+                    <span className="text-lg text-muted-foreground line-through">${compareAtUnit.toFixed(2)}</span>
+                    <span className="text-sm font-medium bg-[#C8A24A]/15 text-[#C8A24A] px-2 py-1 rounded">
+                      30% OFF
+                    </span>
+                    <span className="text-sm font-medium text-success bg-success/10 px-2 py-1 rounded">
+                      Save ${savingsUnit.toFixed(2)}
+                    </span>
+                  </>
+                )}
               </div>
+              {quantity > 1 && (
+                <p className="text-sm text-muted-foreground mt-1">
+                  ${price.toFixed(2)} per pair
+                </p>
+              )}
 
               {/* Description */}
               <p className="text-muted-foreground mt-6 leading-relaxed">
@@ -207,41 +247,39 @@ const Product = () => {
                 </div>
               </div>
 
-              {/* Quantity */}
+              {/* Bundle / Pack size */}
               <div className="mt-8">
-                <span className="text-sm font-medium text-foreground mb-3 block">Quantity</span>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center border border-border rounded-lg">
+                <span className="text-sm font-medium text-foreground mb-3 block">Pack size</span>
+                <div className="flex flex-wrap gap-2">
+                  {BUNDLE_SIZES.map(({ label, qty }) => (
                     <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label="Decrease quantity"
+                      key={qty}
+                      onClick={() => setBundleQty(qty)}
+                      className={`min-w-[5rem] px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                        bundleQty === qty
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted text-foreground hover:bg-muted/80"
+                      }`}
                     >
-                      <Minus className="w-4 h-4" />
+                      {label}
                     </button>
-                    <span className="w-12 text-center font-medium">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-                      aria-label="Increase quantity"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    {quantity >= 3 && "Bundle & Save!"}
-                  </span>
+                  ))}
                 </div>
+                {bundleQty > 1 && (
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Save ${totalSavings.toFixed(2)} with this bundle
+                  </p>
+                )}
               </div>
 
               {/* Add to Cart Button */}
               <div className="mt-8 space-y-3">
                 <Button variant="hero" size="xl" className="w-full">
                   <ShoppingBag className="w-5 h-5" />
-                  Add to Cart — ${(price * quantity).toFixed(2)}
+                  Add to Cart — ${totalPrice.toFixed(2)}
                 </Button>
                 <p className="text-center text-sm text-muted-foreground">
-                  or 4 interest-free payments of ${(price * quantity / 4).toFixed(2)}
+                  or 4 interest-free payments of ${(totalPrice / 4).toFixed(2)}
                 </p>
               </div>
 
@@ -267,13 +305,41 @@ const Product = () => {
                 </div>
               </div>
 
-              {/* Local videos (public/videos) */}
-              <div className="mt-8 pt-8 border-t border-border space-y-10">
+              {/* How It Works / Why It Works — product education */}
+              <div className="mt-8 pt-8 border-t border-border">
+                <h3 className="font-serif text-xl font-medium text-foreground mb-6">
+                  How It Works / Why It Works
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                  <div className="bg-card rounded-lg p-4 border border-border/50">
+                    <div className="font-medium text-foreground mb-2">4-layer absorption</div>
+                    <p className="text-muted-foreground">
+                      Moisture-wicking top layer, absorbent core, leak-proof barrier, and soft outer fabric work together to hold up to 4 tampons worth (40ml) while staying thin.
+                    </p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 border border-border/50">
+                    <div className="font-medium text-foreground mb-2">Leak-proof logic</div>
+                    <p className="text-muted-foreground">
+                      The middle barrier layer prevents leaks in every direction. Side panels and gusset design keep you protected all day, no matter your flow.
+                    </p>
+                  </div>
+                  <div className="bg-card rounded-lg p-4 border border-border/50">
+                    <div className="font-medium text-foreground mb-2">Breathable & thin</div>
+                    <p className="text-muted-foreground">
+                      Unlike bulky pads, our technology is breathable and feels like real underwear. You get security without the bulk or discomfort.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Product videos — 3 videos from public/videos */}
+              <div id="product-videos" className="mt-8 pt-8 border-t border-border space-y-10">
+                <h3 className="font-serif text-xl font-medium text-foreground">Videos</h3>
                 {PRODUCT_VIDEO_FILES.map((video, index) => (
                   <div key={video.filename + index}>
-                    <h3 className="font-serif text-lg font-medium text-foreground mb-2">
+                    <h4 className="font-serif text-lg font-medium text-foreground mb-2">
                       {video.title}
-                    </h3>
+                    </h4>
                     <div className="aspect-video rounded-xl overflow-hidden bg-muted mt-2">
                       <video
                         src={`/videos/${encodeURIComponent(video.filename)}`}
@@ -287,6 +353,40 @@ const Product = () => {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Page under videos: Daily routine, Reviews preview, FAQ preview */}
+              <div className="mt-8 pt-8 border-t border-border space-y-10">
+                <div>
+                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">Daily routine</h3>
+                  <ol className="list-decimal list-inside space-y-2 text-muted-foreground text-sm">
+                    <li>Wear like regular underwear on light to heavy days.</li>
+                    <li>Rinse in cold water after use, then machine wash at 40°C or below.</li>
+                    <li>Hang dry or tumble dry on low — ready for next use.</li>
+                  </ol>
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">What customers say</h3>
+                  <div className="bg-card rounded-lg p-4 border border-border/50">
+                    <p className="text-foreground text-sm italic">&ldquo;I actually forget I&apos;m on my period. No more midnight panics about leaks.&rdquo;</p>
+                    <p className="text-sm text-muted-foreground mt-2">— Sarah M., verified buyer</p>
+                  </div>
+                  <Link to="/#reviews" className="text-sm text-primary hover:underline mt-2 inline-block">
+                    Read more reviews →
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">Quick FAQ</h3>
+                  <p className="text-muted-foreground text-sm mb-2">
+                    <strong className="text-foreground">Size?</strong> Use our Size Guide above. Between sizes? Size up for comfort.
+                  </p>
+                  <p className="text-muted-foreground text-sm mb-2">
+                    <strong className="text-foreground">Returns?</strong> 30-day comfort guarantee. Unworn, original packaging.
+                  </p>
+                  <Link to="/faq" className="text-sm text-primary hover:underline inline-block">
+                    Full FAQ →
+                  </Link>
+                </div>
               </div>
 
               {/* Product Details Accordion */}

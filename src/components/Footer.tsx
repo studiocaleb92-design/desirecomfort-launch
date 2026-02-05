@@ -8,7 +8,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <span className="text-sm tracking-[0.3em] font-medium text-foreground">
+            <Link to="/" className="inline-block">
+              <img src="/logo.svg" alt="DesireComfort" className="h-8 w-auto" width="136" height="32" />
+            </Link>
+            <span className="mt-3 block text-sm tracking-[0.3em] font-medium text-foreground">
               D E S I R E C O M F O R T
             </span>
             <p className="mt-4 text-muted-foreground text-sm leading-relaxed max-w-md">
@@ -32,7 +35,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="mailto:hello@desirecomfort.com"
+                href="mailto:info@desire-comfort.com"
                 className="w-10 h-10 rounded-full bg-blush-light flex items-center justify-center text-warm-brown hover:bg-primary hover:text-primary-foreground transition-colors"
                 aria-label="Email"
               >

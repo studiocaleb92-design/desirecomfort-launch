@@ -1,13 +1,18 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Mail } from "lucide-react";
 
 const Contact = () => {
+  useEffect(() => {
+    const el = document.getElementById("page-content");
+    if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 md:pt-28">
-        <div className="container mx-auto px-4 py-12 md:py-20">
+      <main className="pt-36 md:pt-44 pb-16">
+        <div id="page-content" className="container mx-auto px-4 py-12 md:py-20 scroll-mt-[11rem]">
           <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
             Contact Us
           </h1>
@@ -17,10 +22,10 @@ const Contact = () => {
           <div className="mt-8 flex items-center gap-3">
             <Mail className="w-5 h-5 text-primary" />
             <a
-              href="mailto:hello@desirecomfort.com"
+              href="mailto:info@desire-comfort.com"
               className="text-primary hover:underline font-medium"
             >
-              hello@desirecomfort.com
+              info@desire-comfort.com
             </a>
           </div>
         </div>

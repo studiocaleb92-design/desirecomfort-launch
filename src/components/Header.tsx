@@ -10,12 +10,12 @@ const Header = () => {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/product", label: "Order Now" },
+    { href: "/#order", label: "Order Now" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
     { href: "/faq", label: "FAQ" },
     { href: "/#how-it-works", label: "How It Works" },
-    { href: "/reviews", label: "Reviews" },
+    { href: "/#reviews", label: "Reviews" },
   ];
 
   return (
@@ -24,33 +24,55 @@ const Header = () => {
       <div className="bg-primary/10 text-foreground text-center py-2 px-4 text-sm font-medium">
         ✈️ FREE SHIPPING WORLDWIDE ✈️
       </div>
+      {/* Second moving sale banner — subtle marquee, gold accent on 30% OFF */}
+      <div className="bg-muted/80 text-foreground overflow-hidden border-b border-border/50">
+        <div className="flex w-max py-1.5 text-xs font-medium tracking-wide whitespace-nowrap animate-marquee">
+          <span className="inline-flex items-center gap-4 shrink-0 px-4">
+            <span>VALENTINE&apos;S SALE:</span>
+            <span className="text-[#C8A24A] font-semibold">30% OFF</span>
+            <span>Limited Time</span>
+            <span className="opacity-60">—</span>
+          </span>
+          <span className="inline-flex items-center gap-4 shrink-0 px-4">
+            <span>VALENTINE&apos;S SALE:</span>
+            <span className="text-[#C8A24A] font-semibold">30% OFF</span>
+            <span>Limited Time</span>
+            <span className="opacity-60">—</span>
+          </span>
+        </div>
+      </div>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="" className="h-8 w-auto" width="136" height="32" />
-            <span className="text-sm md:text-base tracking-[0.2em] font-medium text-foreground">DesireComfort</span>
+            <img src="/logo.svg" alt="DesireComfort" className="h-8 w-auto" width="136" height="32" />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  location.pathname === link.href ? "text-foreground" : "text-muted-foreground"
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isHome = link.href === "/";
+              const className = cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                link.href.startsWith("/#")
+                  ? (location.pathname === "/" && (!location.hash || location.hash === link.href.slice(1)) ? "text-foreground" : "text-muted-foreground")
+                  : (location.pathname === link.href ? "text-foreground" : "text-muted-foreground")
+              );
+              return isHome ? (
+                <a key={link.href} href="/" className={className}>
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.href} to={link.href} className={className}>
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/product">
+            <Link to="/#order">
               <Button variant="hero" size="default">
                 <ShoppingBag className="w-4 h-4" />
                 Shop Now
@@ -76,16 +98,28 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
             <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isHome = link.href === "/";
+                return isHome ? (
+                  <a
+                    key={link.href}
+                    href="/"
+                    className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <Link to="/product" onClick={() => setIsMenuOpen(false)}>
                 <Button variant="hero" size="lg" className="w-full mt-2">
                   <ShoppingBag className="w-4 h-4" />

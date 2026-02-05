@@ -15,7 +15,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 pt-24 pb-16 md:pt-32 md:pb-24 relative z-10">
+      <div className="container mx-auto px-4 pt-24 pb-16 md:pt-32 md:pb-24 relative z-10 flex flex-col items-center text-center">
         <div className="max-w-2xl">
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush-light/80 backdrop-blur-sm text-warm-brown text-sm font-medium mb-6 animate-fade-in-up">
@@ -23,14 +23,17 @@ const HeroSection = () => {
             Trusted by 50,000+ Women
           </div>
 
-          {/* Headline */}
-          <h1 className="text-hero text-foreground animate-fade-in-up animation-delay-100">
-            Leak-Proof <span className="text-primary">Period Panties</span> That Feels Like Real Underwear
-          </h1>
+          {/* Hero brand — logo + name that stays on one line */}
+          <div className="animate-fade-in-up animation-delay-100">
+            <img src="/logo.svg" alt="DesireComfort" className="h-12 md:h-14 w-auto mx-auto mb-4" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium font-serif text-foreground tracking-[0.2em] whitespace-nowrap">
+              DESIRE–COMFORT
+            </h1>
+          </div>
 
-          {/* Subheadline */}
-          <p className="text-hero-sub mt-6 max-w-lg animate-fade-in-up animation-delay-200">
-            Get soft, breathable period panties designed to replace pads and tampons without bulk, discomfort, or leaks.
+          {/* Slogan */}
+          <p className="text-hero-sub mt-4 animate-fade-in-up animation-delay-200">
+            Leak-Proof Period Panties That Feel Like Real Underwear
           </p>
 
           {/* Trust line */}
