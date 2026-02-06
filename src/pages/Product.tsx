@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useCart } from "@/context/CartContext";
 import { 
   ShoppingBag, 
   Shield, 
@@ -51,19 +52,23 @@ const FALLBACK_BY_COLOR: Record<string, string[]> = {
 const COLOR_IMAGES = COLOR_IMAGES_SRC;
 const FALLBACK_IMAGES = [productHero, productVariants, productHero];
 
-const UNIT_PRICE = 34.99;
+// Pricing aligned with everdries.com: 5-Pack at $69.95, 30% off
+const UNIT_PRICE = 13.99;
 const BUNDLE_SIZES = [
-  { label: "1", qty: 1 },
+  { label: "5-Pack", qty: 5 },
   { label: "10-Pack", qty: 10 },
   { label: "15-Pack", qty: 15 },
   { label: "20-Pack", qty: 20 },
 ] as const;
 
+const PRODUCT_TITLE = "Leak-Proof Period Underwear";
+
 const Product = () => {
   const [selectedSize, setSelectedSize] = useState("M");
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
-  const [bundleQty, setBundleQty] = useState(10);
+  const [bundleQty, setBundleQty] = useState(5);
   const [activeImage, setActiveImage] = useState(0);
+  const { addItem, openCart } = useCart();
 
   const images = COLOR_IMAGES[selectedColor] ?? FALLBACK_IMAGES;
   const fallbackImages = FALLBACK_BY_COLOR[selectedColor] ?? FALLBACK_IMAGES;
@@ -94,7 +99,7 @@ const Product = () => {
                     const el = e.currentTarget;
                     if (!el.dataset.fallback) {
                       el.dataset.fallback = "1";
-                      el.src = productHero;
+                      el.src = fallbackImages[activeImage] ?? productHero;
                     }
                   }}
                 />
@@ -272,15 +277,29 @@ const Product = () => {
                 )}
               </div>
 
-              {/* Add to Cart Button */}
-              <div className="mt-8 space-y-3">
-                <Button variant="hero" size="xl" className="w-full">
+              {/* Add to Cart Button — opens cart drawer on the right */}
+              <div className="mt-8">
+                <Button
+                  variant="hero"
+                  size="xl"
+                  className="w-full"
+                  onClick={() => {
+                    const packLabel = BUNDLE_SIZES.find((b) => b.qty === bundleQty)?.label ?? `${bundleQty}-Pack`;
+                    addItem({
+                      title: PRODUCT_TITLE,
+                      price,
+                      quantity: bundleQty,
+                      color: selectedColor,
+                      size: selectedSize,
+                      packLabel,
+                      image: images[0],
+                    });
+                    openCart();
+                  }}
+                >
                   <ShoppingBag className="w-5 h-5" />
                   Add to Cart — ${totalPrice.toFixed(2)}
                 </Button>
-                <p className="text-center text-sm text-muted-foreground">
-                  or 4 interest-free payments of ${(totalPrice / 4).toFixed(2)}
-                </p>
               </div>
 
               {/* Trust Badges */}

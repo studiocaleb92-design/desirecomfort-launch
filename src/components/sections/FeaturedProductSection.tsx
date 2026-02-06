@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import productHero from "@/assets/product-hero.jpg";
 import { getCompareAtPrice, getSavings } from "@/lib/utils";
+import { useCart } from "@/context/CartContext";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
 const colors = [
@@ -31,7 +31,8 @@ const COLOR_IMAGE = COLOR_IMAGE_SRC;
 const FeaturedProductSection = () => {
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
   const [selectedSize, setSelectedSize] = useState("M");
-  const price = 34.99;
+  const { addItem, openCart } = useCart();
+  const price = 13.99;
   const compareAt = getCompareAtPrice(price);
   const savings = getSavings(compareAt, price);
   const featuredImage = COLOR_IMAGE[selectedColor] ?? "/images/blush-pink.jpg";
@@ -126,12 +127,25 @@ const FeaturedProductSection = () => {
             </div>
 
             <div className="mt-6">
-              <Link to="/product">
-                <Button variant="hero" size="xl">
-                  <ShoppingBag className="w-5 h-5" />
-                  Order Now
-                </Button>
-              </Link>
+              <Button
+                variant="hero"
+                size="xl"
+                onClick={() => {
+                  addItem({
+                    title: "4-Layer Leakproof Panties",
+                    price,
+                    quantity: 5,
+                    color: selectedColor,
+                    size: selectedSize,
+                    packLabel: "5-Pack",
+                    image: featuredImage,
+                  });
+                  openCart();
+                }}
+              >
+                <ShoppingBag className="w-5 h-5" />
+                Order Now
+              </Button>
             </div>
           </div>
         </div>

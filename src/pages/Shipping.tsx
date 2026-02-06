@@ -20,7 +20,7 @@ const Shipping = () => {
               </p>
               <p>
                 You'll receive a tracking link once your order ships. If you have questions,
-                contact us at hello@desirecomfort.com.
+                contact us at Info@desire-comfort.com.
               </p>
             </div>
           </div>

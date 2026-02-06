@@ -12,7 +12,7 @@ const Privacy = () => {
           </h1>
           <p className="mt-6 text-muted-foreground leading-relaxed">
             We respect your privacy. This page will be updated with our full privacy policy.
-            For questions, contact us at hello@desirecomfort.com.
+            For questions, contact us at Info@desire-comfort.com.
           </p>
         </div>
       </main>

@@ -3,9 +3,9 @@ import productHero from "@/assets/product-hero.jpg";
 import productVariants from "@/assets/product-variants.jpg";
 import heroLifestyle from "@/assets/hero-lifestyle.jpg";
 
-// Everdries images (pnpm run download-everdries-images). Fallback: assets.
+// Product gallery — DesireComfort assets only (no journalist/everdries-branded image)
 const galleryImages = [
-  { src: "/images/everdries-hero.jpg", fallback: heroLifestyle, alt: "DesireComfort — lifestyle" },
+  { src: "/images/blush-pink.jpg", fallback: productHero, alt: "DesireComfort — 4-layer leakproof panties" },
   { src: "/images/everdries-gallery-1.jpg", fallback: productHero, alt: "4-Layer Leakproof Panties — main" },
   { src: "/images/everdries-gallery-2.jpg", fallback: productVariants, alt: "4-Layer Leakproof Panties — variants" },
   { src: "/images/everdries-gallery-3.jpg", fallback: productHero, alt: "4-Layer Leakproof Panties — detail" },
