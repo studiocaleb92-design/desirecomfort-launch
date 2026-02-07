@@ -86,7 +86,7 @@ const Product = () => {
       <Header />
       
       <main className="pt-24 md:pt-28">
-        <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="container mx-auto px-4 py-8 md:py-16 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Product Images */}
             <div className="space-y-4">
@@ -182,7 +182,7 @@ const Product = () => {
               )}
 
               {/* Description */}
-              <p className="text-muted-foreground mt-6 leading-relaxed">
+              <p className="text-base font-medium text-foreground/90 mt-6 leading-relaxed">
                 Ultra-thin, leak-proof period underwear designed for all-day comfort. 
                 Our 4-layer technology absorbs up to 4 tampons worth of fluid while 
                 staying incredibly thin and breathable.
@@ -204,13 +204,10 @@ const Product = () => {
                 </div>
               </div>
 
-              {/* Color Selection */}
+              {/* Color Selection — names shown so colors are easy to find and match the photo */}
               <div className="mt-8">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-foreground">Color</span>
-                  <span className="text-sm text-muted-foreground">{selectedColor}</span>
-                </div>
-                <div className="flex gap-3">
+                <span className="text-base font-semibold text-foreground block mb-3">Color</span>
+                <div className="flex flex-wrap gap-4">
                   {colors.map((color) => (
                     <button
                       key={color.name}
@@ -218,13 +215,18 @@ const Product = () => {
                         setSelectedColor(color.name);
                         setActiveImage(0);
                       }}
-                      className={`w-10 h-10 rounded-full ${color.class} transition-all ${
-                        selectedColor === color.name
-                          ? "ring-2 ring-primary ring-offset-2"
-                          : "hover:scale-110"
-                      }`}
+                      className="flex flex-col items-center gap-1.5 transition-all hover:opacity-90"
                       aria-label={color.name}
-                    />
+                    >
+                      <span
+                        className={`w-10 h-10 rounded-full ${color.class} block transition-all ${
+                          selectedColor === color.name
+                            ? "ring-2 ring-primary ring-offset-2"
+                            : "hover:scale-110"
+                        }`}
+                      />
+                      <span className="text-sm font-semibold text-foreground">{color.name}</span>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -232,8 +234,8 @@ const Product = () => {
               {/* Size Selection */}
               <div className="mt-8">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-foreground">Size</span>
-                  <button className="text-sm text-primary hover:underline">Size Guide</button>
+                  <span className="text-base font-semibold text-foreground">Size</span>
+                  <button className="text-sm font-medium text-primary hover:underline">Size Guide</button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {sizes.map((size) => (
@@ -252,9 +254,9 @@ const Product = () => {
                 </div>
               </div>
 
-              {/* Bundle / Pack size */}
+              {/* Bundle / Pack size — 5, 10, 15, 20 located here */}
               <div className="mt-8">
-                <span className="text-sm font-medium text-foreground mb-3 block">Pack size</span>
+                <span className="text-base font-semibold text-foreground mb-3 block">Pack size</span>
                 <div className="flex flex-wrap gap-2">
                   {BUNDLE_SIZES.map(({ label, qty }) => (
                     <button
@@ -271,7 +273,7 @@ const Product = () => {
                   ))}
                 </div>
                 {bundleQty > 1 && (
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="text-sm font-medium text-foreground/80 mt-2">
                     Save ${totalSavings.toFixed(2)} with this bundle
                   </p>
                 )}
@@ -377,32 +379,32 @@ const Product = () => {
               {/* Page under videos: Daily routine, Reviews preview, FAQ preview */}
               <div className="mt-8 pt-8 border-t border-border space-y-10">
                 <div>
-                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">Daily routine</h3>
-                  <ol className="list-decimal list-inside space-y-2 text-muted-foreground text-sm">
+                  <h3 className="font-serif text-lg font-semibold text-foreground mb-4">Daily routine</h3>
+                  <ol className="list-decimal list-inside space-y-2 text-base font-medium text-foreground/90">
                     <li>Wear like regular underwear on light to heavy days.</li>
                     <li>Rinse in cold water after use, then machine wash at 40°C or below.</li>
                     <li>Hang dry or tumble dry on low — ready for next use.</li>
                   </ol>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">What customers say</h3>
+                  <h3 className="font-serif text-lg font-semibold text-foreground mb-4">What customers say</h3>
                   <div className="bg-card rounded-lg p-4 border border-border/50">
-                    <p className="text-foreground text-sm italic">&ldquo;I actually forget I&apos;m on my period. No more midnight panics about leaks.&rdquo;</p>
-                    <p className="text-sm text-muted-foreground mt-2">— Sarah M., verified buyer</p>
+                    <p className="text-foreground text-base font-medium italic">&ldquo;I actually forget I&apos;m on my period. No more midnight panics about leaks.&rdquo;</p>
+                    <p className="text-base font-medium text-foreground/80 mt-2">— Sarah M., verified buyer</p>
                   </div>
-                  <Link to="/#reviews" className="text-sm text-primary hover:underline mt-2 inline-block">
+                  <Link to="/#reviews" className="text-base font-medium text-primary hover:underline mt-2 inline-block">
                     Read more reviews →
                   </Link>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-medium text-foreground mb-4">Quick FAQ</h3>
-                  <p className="text-muted-foreground text-sm mb-2">
+                  <h3 className="font-serif text-lg font-semibold text-foreground mb-4">Quick FAQ</h3>
+                  <p className="text-foreground/90 text-base font-medium mb-2">
                     <strong className="text-foreground">Size?</strong> Use our Size Guide above. Between sizes? Size up for comfort.
                   </p>
-                  <p className="text-muted-foreground text-sm mb-2">
+                  <p className="text-foreground/90 text-base font-medium mb-2">
                     <strong className="text-foreground">Returns?</strong> 30-day comfort guarantee. Unworn, original packaging.
                   </p>
-                  <Link to="/faq" className="text-sm text-primary hover:underline inline-block">
+                  <Link to="/faq" className="text-base font-medium text-primary hover:underline inline-block">
                     Full FAQ →
                   </Link>
                 </div>

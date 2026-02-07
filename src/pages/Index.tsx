@@ -26,14 +26,12 @@ const Index = () => {
   useEffect(() => {
     if (!hash) return;
     const id = hash.slice(1);
-    const el = document.getElementById(id);
-    if (!el) return;
-    const headerOffset = 176;
     const scrollToTarget = () => {
-      const y = el.getBoundingClientRect().top + window.scrollY - headerOffset;
-      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
     };
-    const t = setTimeout(scrollToTarget, 50);
+    const t = setTimeout(scrollToTarget, 100);
     return () => clearTimeout(t);
   }, [hash]);
   const scrollMarginClass = "scroll-mt-[11rem]";

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import productHero from "@/assets/product-hero.jpg";
-import { getCompareAtPrice, getSavings } from "@/lib/utils";
+import { getCompareAtPrice, getSavings, roundToTwoDecimals } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
@@ -12,6 +12,12 @@ const colors = [
   { name: "Cream", class: "bg-[hsl(40,40%,90%)]" },
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
 ];
+const BUNDLE_SIZES = [
+  { label: "5-Pack", qty: 5 },
+  { label: "10-Pack", qty: 10 },
+  { label: "15-Pack", qty: 15 },
+  { label: "20-Pack", qty: 20 },
+] as const;
 
 // Per-color image: Everdries (pnpm run download-everdries-images). Fallback: assets.
 const COLOR_IMAGE_SRC: Record<string, string> = {
@@ -28,21 +34,28 @@ const FALLBACK_IMAGE_BY_COLOR: Record<string, string> = {
 };
 const COLOR_IMAGE = COLOR_IMAGE_SRC;
 
+const UNIT_PRICE = 13.99;
+
 const FeaturedProductSection = () => {
   const [selectedColor, setSelectedColor] = useState("Blush Pink");
   const [selectedSize, setSelectedSize] = useState("M");
+  const [bundleQty, setBundleQty] = useState(5);
   const { addItem, openCart } = useCart();
-  const price = 13.99;
+  const price = UNIT_PRICE;
   const compareAt = getCompareAtPrice(price);
   const savings = getSavings(compareAt, price);
+  const totalPrice = roundToTwoDecimals(price * bundleQty);
+  const totalCompareAt = roundToTwoDecimals(compareAt * bundleQty);
+  const totalSavings = getSavings(totalCompareAt, totalPrice);
   const featuredImage = COLOR_IMAGE[selectedColor] ?? "/images/blush-pink.jpg";
   const featuredFallback = FALLBACK_IMAGE_BY_COLOR[selectedColor] ?? productHero;
+  const packLabel = BUNDLE_SIZES.find((b) => b.qty === bundleQty)?.label ?? `${bundleQty}-Pack`;
 
   return (
     <section className="section-padding bg-cream-dark">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-sm font-medium tracking-wider text-primary uppercase">
+          <span className="text-base font-semibold tracking-wider text-primary uppercase">
             Featured product
           </span>
           <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground mt-4">
@@ -66,20 +79,20 @@ const FeaturedProductSection = () => {
           </div>
           <div className="space-y-6">
             <div className="flex flex-wrap items-baseline gap-3">
-              <span className="text-2xl md:text-3xl font-medium text-foreground">
-                ${price.toFixed(2)}
+              <span className="text-2xl md:text-3xl font-semibold text-foreground">
+                ${totalPrice.toFixed(2)}
               </span>
               <span className="text-lg text-muted-foreground line-through">
-                ${compareAt.toFixed(2)}
+                ${totalCompareAt.toFixed(2)}
               </span>
-              <span className="text-sm font-medium bg-[#C8A24A]/15 text-[#C8A24A] px-2 py-1 rounded">
+              <span className="text-sm font-semibold bg-[#C8A24A]/15 text-[#C8A24A] px-2 py-1 rounded">
                 30% OFF
               </span>
-              <span className="text-sm font-medium text-success bg-success/10 px-2 py-1 rounded">
-                Save ${savings.toFixed(2)}
+              <span className="text-sm font-semibold text-success bg-success/10 px-2 py-1 rounded">
+                Save ${totalSavings.toFixed(2)}
               </span>
             </div>
-            <ul className="text-muted-foreground space-y-2 text-sm">
+            <ul className="text-foreground/90 space-y-2 text-base font-medium">
               <li>👗 Discreet Everyday Fit</li>
               <li>♻️ Reusable & Washable</li>
               <li>🛡️ Leak-proof Security</li>
@@ -87,28 +100,58 @@ const FeaturedProductSection = () => {
               <li>🤍 All-day Comfort</li>
             </ul>
 
-            {/* Color selector */}
+            {/* Pack size — bundle packs 5, 10, 15, 20 */}
             <div>
-              <span className="text-sm font-medium text-foreground block mb-2">Color</span>
-              <div className="flex gap-2">
+              <span className="text-base font-semibold text-foreground block mb-2">Pack size</span>
+              <div className="flex flex-wrap gap-2">
+                {BUNDLE_SIZES.map(({ label, qty }) => (
+                  <button
+                    key={qty}
+                    onClick={() => setBundleQty(qty)}
+                    className={`min-w-[5rem] px-4 py-3 rounded-lg text-sm font-semibold transition-all ${
+                      bundleQty === qty
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              {bundleQty > 1 && (
+                <p className="text-sm font-medium text-muted-foreground mt-2">
+                  Save ${totalSavings.toFixed(2)} with this bundle
+                </p>
+              )}
+            </div>
+
+            {/* Color selector — names shown so colors are easy to find */}
+            <div>
+              <span className="text-base font-semibold text-foreground block mb-2">Color</span>
+              <div className="flex flex-wrap gap-4">
                 {colors.map((color) => (
                   <button
                     key={color.name}
                     onClick={() => setSelectedColor(color.name)}
-                    className={`w-9 h-9 rounded-full ${color.class} transition-all ${
-                      selectedColor === color.name
-                        ? "ring-2 ring-primary ring-offset-2"
-                        : "hover:scale-110"
-                    }`}
+                    className="flex flex-col items-center gap-1.5 transition-all hover:opacity-90"
                     aria-label={color.name}
-                  />
+                  >
+                    <span
+                      className={`w-10 h-10 rounded-full ${color.class} block transition-all ${
+                        selectedColor === color.name
+                          ? "ring-2 ring-primary ring-offset-2"
+                          : "hover:scale-110"
+                      }`}
+                    />
+                    <span className="text-sm font-semibold text-foreground">{color.name}</span>
+                  </button>
                 ))}
               </div>
             </div>
 
             {/* Size selector */}
             <div>
-              <span className="text-sm font-medium text-foreground block mb-2">Size</span>
+              <span className="text-base font-semibold text-foreground block mb-2">Size</span>
               <div className="flex flex-wrap gap-2">
                 {sizes.map((size) => (
                   <button
@@ -134,10 +177,10 @@ const FeaturedProductSection = () => {
                   addItem({
                     title: "4-Layer Leakproof Panties",
                     price,
-                    quantity: 5,
+                    quantity: bundleQty,
                     color: selectedColor,
                     size: selectedSize,
-                    packLabel: "5-Pack",
+                    packLabel,
                     image: featuredImage,
                   });
                   openCart();

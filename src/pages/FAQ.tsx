@@ -35,21 +35,21 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-36 md:pt-44 pb-16">
-        <div id="page-content" className="container mx-auto px-4 py-12 md:py-20 scroll-mt-[11rem]">
+      <main className="pt-36 md:pt-44 pb-16 flex justify-center">
+        <div id="page-content" className="container mx-auto px-4 py-12 md:py-20 scroll-mt-[11rem] max-w-3xl w-full">
           <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
             Frequently Asked Questions
           </h1>
-          <p className="mt-4 text-muted-foreground max-w-2xl">
-            Quick answers to common questions. Can't find what you need? Contact us.
+          <p className="mt-4 text-base font-medium text-foreground/90 max-w-2xl">
+            Quick answers to common questions. Can&apos;t find what you need? Contact us.
           </p>
           <Accordion type="single" collapsible className="mt-8 max-w-2xl">
             {faqs.map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left">
+                <AccordionTrigger className="text-left text-base font-semibold text-foreground">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-base text-foreground/85">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
