@@ -24,22 +24,13 @@ const Header = () => {
       <div className="bg-primary/10 text-foreground text-center py-2 px-4 text-sm font-medium">
         ✈️ FREE SHIPPING WORLDWIDE ✈️
       </div>
-      {/* Second moving sale banner — subtle marquee, gold accent on 30% OFF */}
-      <div className="bg-muted/80 text-foreground overflow-hidden border-b border-border/50">
-        <div className="flex w-max py-1.5 text-xs font-medium tracking-wide whitespace-nowrap animate-marquee">
-          <span className="inline-flex items-center gap-4 shrink-0 px-4">
-            <span>VALENTINE&apos;S SALE:</span>
-            <span className="text-[#C8A24A] font-semibold">30% OFF</span>
-            <span>Limited Time</span>
-            <span className="opacity-60">—</span>
-          </span>
-          <span className="inline-flex items-center gap-4 shrink-0 px-4">
-            <span>VALENTINE&apos;S SALE:</span>
-            <span className="text-[#C8A24A] font-semibold">30% OFF</span>
-            <span>Limited Time</span>
-            <span className="opacity-60">—</span>
-          </span>
-        </div>
+      {/* Valentine's sale banner — centered */}
+      <div className="bg-muted/80 text-foreground border-b border-border/50 py-1.5 text-center">
+        <span className="text-xs font-medium tracking-wide">
+          <span>VALENTINE&apos;S SALE: </span>
+          <span className="text-[#C8A24A] font-semibold">30% OFF</span>
+          <span> Limited Time</span>
+        </span>
       </div>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">

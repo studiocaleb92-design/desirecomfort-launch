@@ -51,8 +51,8 @@ const HeroSection = () => {
             </a>
           </div>
 
-          {/* Quick Benefits */}
-          <div className="flex flex-wrap gap-6 mt-10 animate-fade-in-up animation-delay-400">
+          {/* Quick Benefits — centered */}
+          <div className="flex flex-wrap justify-center gap-6 mt-10 animate-fade-in-up animation-delay-400">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Droplets className="w-4 h-4 text-primary" />
               Leak-Proof Protection
