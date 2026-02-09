@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+      "desire-supabase": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@supabase/mcp-server-supabase@latest",
+          "--project-ref=iqvfsaqdiafwfwlnwyui"
+        ],
+        "env": {
+          "SUPABASE_ACCESS_TOKEN": "sbp_ddfe168d260787af9f50fb25a712358abb79b385",
+          "SUPABASE_URL": "https://iqvfsaqdiafwfwlnwyui.supabase.co"
+        }
+      }
+    }
+  }
