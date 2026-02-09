@@ -1,14 +1,16 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-11-20.acacia",
-});
-
 export const config = {
   api: {
     bodyParser: true,
   },
 };
+
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) return null;
+  return new Stripe(key, { apiVersion: "2024-11-20.acacia" });
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -22,7 +24,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Cart items are required" });
   }
 
-  if (!process.env.STRIPE_SECRET_KEY) {
+  const stripe = getStripe();
+  if (!stripe) {
     console.error("STRIPE_SECRET_KEY is not set");
     return res.status(500).json({ error: "Server configuration error" });
   }

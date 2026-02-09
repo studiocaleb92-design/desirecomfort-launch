@@ -100,7 +100,14 @@ const CartDrawer = () => {
                       cancelUrl: `${origin}/product`,
                     }),
                   });
-                  const data = await res.json();
+                  const text = await res.text();
+                  let data;
+                  try {
+                    data = text ? JSON.parse(text) : {};
+                  } catch {
+                    setCheckoutError("Checkout is temporarily unavailable. Please try again or contact us.");
+                    return;
+                  }
                   if (!res.ok) throw new Error(data.error || "Checkout failed");
                   if (data.url) {
                     closeCart();
