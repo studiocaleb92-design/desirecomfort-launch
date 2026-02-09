@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
-import { Minus, Plus, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2, Loader2 } from "lucide-react";
+
+const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 const CartDrawer = () => {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal } = useCart();
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
@@ -73,19 +78,51 @@ const CartDrawer = () => {
               <span className="text-muted-foreground">SUBTOTAL</span>
               <span className="font-medium">${subtotal.toFixed(2)}</span>
             </div>
+            {checkoutError && (
+              <p className="text-sm text-destructive font-medium">{checkoutError}</p>
+            )}
             <Button
               variant="hero"
               className="w-full"
               size="lg"
-              onClick={() => {
-                closeCart();
-                // TODO: Redirect to Stripe Checkout or open Payment Element.
-                // You will need: Stripe account, publishable/secret keys, and either
-                // Stripe Checkout Session (create session on your backend, then redirect)
-                // or Stripe Payment Element (client + server).
+              disabled={checkoutLoading}
+              onClick={async () => {
+                setCheckoutError(null);
+                setCheckoutLoading(true);
+                try {
+                  const origin = window.location.origin;
+                  const res = await fetch(`${API_BASE}/api/create-checkout-session`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      items: items.map(({ id: _id, ...item }) => item),
+                      successUrl: `${origin}/order-success`,
+                      cancelUrl: `${origin}/product`,
+                    }),
+                  });
+                  const data = await res.json();
+                  if (!res.ok) throw new Error(data.error || "Checkout failed");
+                  if (data.url) {
+                    closeCart();
+                    window.location.href = data.url;
+                    return;
+                  }
+                  throw new Error("No checkout URL received");
+                } catch (e) {
+                  setCheckoutError(e instanceof Error ? e.message : "Something went wrong");
+                } finally {
+                  setCheckoutLoading(false);
+                }
               }}
             >
-              Check out →
+              {checkoutLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Redirecting…
+                </>
+              ) : (
+                "Check out →"
+              )}
             </Button>
           </div>
         )}
