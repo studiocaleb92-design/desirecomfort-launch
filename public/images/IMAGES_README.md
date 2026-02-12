@@ -1,20 +1,21 @@
 # Product images
 
-## New color placeholders (Caramel, Apricot, Khaki, Lava, White)
+## New colors (Caramel, Apricot, Khaki, Lava, White)
 
-The files `caramel.svg`, `apricot.svg`, `khaki.svg`, `lava.svg`, and `white.svg` are **placeholder** color swatches. When you have real product photos from your supplier:
+The product and featured sections use **existing product photos** for these 5 colors so the main image is always a real product shot (not a swatch):
 
-1. Add JPG (or WebP) files to this folder, e.g.:
-   - `caramel.jpg`
-   - `apricot.jpg`
-   - `khaki.jpg`
-   - `lava.jpg`
-   - `white.jpg`
-2. In the codebase, update the image paths from `.svg` to `.jpg` in:
+- **Caramel, Apricot, Khaki** → `cream.jpg` + everdries gallery images
+- **Lava** → `dusty-rose.jpg` + everdries (dark tone)
+- **White** → `everdries-white.jpg` + cream
+
+When you have **dedicated product photos** from your supplier for these colors:
+
+1. Add JPG files to this folder: `caramel.jpg`, `apricot.jpg`, `khaki.jpg`, `lava.jpg`, `white.jpg`.
+2. In the codebase, set those paths in:
    - `src/pages/Product.tsx` (COLOR_IMAGES_SRC and FALLBACK_BY_COLOR)
    - `src/components/sections/FeaturedProductSection.tsx` (COLOR_IMAGE_SRC and FALLBACK_IMAGE_BY_COLOR)
 
-You can then remove the `.svg` placeholders if you no longer need them.
+The optional `.svg` files in this folder (caramel.svg, apricot.svg, etc.) are unused; you can keep or remove them.
 
 ## OEKO-TEX badge
 

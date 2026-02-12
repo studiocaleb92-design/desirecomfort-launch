@@ -22,16 +22,12 @@ import productVariants from "@/assets/product-variants.jpg";
 import { getCompareAtPrice, getSavings, roundToTwoDecimals } from "@/lib/utils";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
-// Supplier colors: original + Caramel, Apricot, Khaki, Lava, White (1688)
+// Only colors with matching product images (Blush Pink, Dusty Rose, Cream, Black, White)
 const colors = [
   { name: "Blush Pink", class: "bg-[hsl(355,45%,70%)]" },
   { name: "Dusty Rose", class: "bg-[hsl(355,40%,55%)]" },
   { name: "Cream", class: "bg-[hsl(40,40%,90%)]" },
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
-  { name: "Caramel", class: "bg-[hsl(30,45%,55%)]" },
-  { name: "Apricot", class: "bg-[hsl(35,50%,85%)]" },
-  { name: "Khaki", class: "bg-[hsl(45,25%,45%)]" },
-  { name: "Lava", class: "bg-[hsl(350,35%,35%)]" },
   { name: "White", class: "bg-white border border-border" },
 ];
 
@@ -42,28 +38,20 @@ const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
   { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
 ];
 
-// Per-color images. Replace caramel.svg, apricot.svg, khaki.svg, lava.svg, white.svg with .jpg when you have real product photos.
+// Per-color images: only colors that have matching product photos
 const COLOR_IMAGES_SRC: Record<string, string[]> = {
   "Blush Pink": ["/images/blush-pink.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Dusty Rose": ["/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Cream": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Black": ["/images/black.jpg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
-  "Caramel": ["/images/caramel.svg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
-  "Apricot": ["/images/apricot.svg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
-  "Khaki": ["/images/khaki.svg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
-  "Lava": ["/images/lava.svg", "/images/everdries-gallery-4.jpg", "/images/everdries-gallery-3.jpg"],
-  "White": ["/images/white.svg", "/images/everdries-white.jpg", "/images/everdries-gallery-2.jpg"],
+  "White": ["/images/everdries-white.jpg", "/images/cream.jpg", "/images/everdries-gallery-2.jpg"],
 };
 const FALLBACK_BY_COLOR: Record<string, string[]> = {
   "Blush Pink": [productHero, productVariants, "/images/blush-pink.jpg"],
   "Dusty Rose": [productHero, productVariants, "/images/dusty-rose.jpg"],
   "Cream": [productHero, productVariants, "/images/cream.jpg"],
   "Black": [productHero, productVariants, "/images/black.jpg"],
-  "Caramel": [productHero, productVariants, "/images/caramel.svg"],
-  "Apricot": [productHero, productVariants, "/images/apricot.svg"],
-  "Khaki": [productHero, productVariants, "/images/khaki.svg"],
-  "Lava": [productHero, productVariants, "/images/lava.svg"],
-  "White": [productHero, productVariants, "/images/white.svg"],
+  "White": [productHero, productVariants, "/images/everdries-white.jpg"],
 };
 const COLOR_IMAGES = COLOR_IMAGES_SRC;
 const FALLBACK_IMAGES = [productHero, productVariants, productHero];

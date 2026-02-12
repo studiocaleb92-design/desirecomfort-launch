@@ -11,10 +11,6 @@ const colors = [
   { name: "Dusty Rose", class: "bg-[hsl(355,40%,55%)]" },
   { name: "Cream", class: "bg-[hsl(40,40%,90%)]" },
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
-  { name: "Caramel", class: "bg-[hsl(30,45%,55%)]" },
-  { name: "Apricot", class: "bg-[hsl(35,50%,85%)]" },
-  { name: "Khaki", class: "bg-[hsl(45,25%,45%)]" },
-  { name: "Lava", class: "bg-[hsl(350,35%,35%)]" },
   { name: "White", class: "bg-white border border-border" },
 ];
 const BUNDLE_SIZES = [
@@ -24,28 +20,20 @@ const BUNDLE_SIZES = [
   { label: "20-Pack", qty: 20 },
 ] as const;
 
-// Per-color image. Replace .svg with .jpg in public/images/ when you have real product photos for the 5 new colors.
+// Per-color image: only colors that have matching product photos
 const COLOR_IMAGE_SRC: Record<string, string> = {
   "Blush Pink": "/images/blush-pink.jpg",
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
-  "Caramel": "/images/caramel.svg",
-  "Apricot": "/images/apricot.svg",
-  "Khaki": "/images/khaki.svg",
-  "Lava": "/images/lava.svg",
-  "White": "/images/white.svg",
+  "White": "/images/everdries-white.jpg",
 };
 const FALLBACK_IMAGE_BY_COLOR: Record<string, string> = {
   "Blush Pink": "/images/blush-pink.jpg",
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
-  "Caramel": "/images/caramel.svg",
-  "Apricot": "/images/apricot.svg",
-  "Khaki": "/images/khaki.svg",
-  "Lava": "/images/lava.svg",
-  "White": "/images/white.svg",
+  "White": "/images/everdries-white.jpg",
 };
 const COLOR_IMAGE = COLOR_IMAGE_SRC;
 
