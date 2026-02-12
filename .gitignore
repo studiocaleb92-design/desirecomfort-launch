@@ -15,6 +15,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Cursor MCP config (may contain tokens)
+.cursor
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

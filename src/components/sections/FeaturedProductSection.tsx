@@ -11,6 +11,11 @@ const colors = [
   { name: "Dusty Rose", class: "bg-[hsl(355,40%,55%)]" },
   { name: "Cream", class: "bg-[hsl(40,40%,90%)]" },
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
+  { name: "Caramel", class: "bg-[hsl(30,45%,55%)]" },
+  { name: "Apricot", class: "bg-[hsl(35,50%,85%)]" },
+  { name: "Khaki", class: "bg-[hsl(45,25%,45%)]" },
+  { name: "Lava", class: "bg-[hsl(350,35%,35%)]" },
+  { name: "White", class: "bg-white border border-border" },
 ];
 const BUNDLE_SIZES = [
   { label: "5-Pack", qty: 5 },
@@ -25,12 +30,22 @@ const COLOR_IMAGE_SRC: Record<string, string> = {
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
+  "Caramel": "/images/cream.jpg",
+  "Apricot": "/images/cream.jpg",
+  "Khaki": "/images/cream.jpg",
+  "Lava": "/images/dusty-rose.jpg",
+  "White": "/images/everdries-white.jpg",
 };
 const FALLBACK_IMAGE_BY_COLOR: Record<string, string> = {
   "Blush Pink": "/images/blush-pink.jpg",
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
+  "Caramel": "/images/cream.jpg",
+  "Apricot": "/images/cream.jpg",
+  "Khaki": "/images/cream.jpg",
+  "Lava": "/images/dusty-rose.jpg",
+  "White": "/images/everdries-white.jpg",
 };
 const COLOR_IMAGE = COLOR_IMAGE_SRC;
 
@@ -66,7 +81,7 @@ const FeaturedProductSection = () => {
           <div className="rounded-2xl overflow-hidden bg-background shadow-soft aspect-square max-h-[400px] md:max-h-none">
             <img
               src={featuredImage}
-              alt={`DesireComfort 4-Layer Leakproof Panties — ${selectedColor}`}
+              alt={`Desire Comfort™ 4-Layer Leakproof Panties — ${selectedColor}`}
               className="w-full h-full object-cover"
               onError={(e) => {
                 const el = e.currentTarget;

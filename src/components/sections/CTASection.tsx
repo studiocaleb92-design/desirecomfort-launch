@@ -17,7 +17,7 @@ const CTASection = () => {
             Ready to experience <span className="text-primary">true comfort</span>?
           </h2>
           <p className="text-lg text-muted-foreground mt-6 max-w-xl mx-auto">
-            Join over 50,000 women who've made the switch to DesireComfort. 
+            Join over 50,000 women who've made the switch to Desire Comfort™. 
             Your confidence is waiting.
           </p>
           

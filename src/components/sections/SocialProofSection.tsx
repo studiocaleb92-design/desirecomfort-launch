@@ -12,7 +12,7 @@ const testimonials = [
     name: "Jessica T.",
     location: "Austin, TX",
     rating: 5,
-    text: "Finally, underwear that actually works. I've tried other brands but DesireComfort is on another level. So comfortable and the protection is incredible.",
+    text: "Finally, underwear that actually works. I've tried other brands but Desire Comfort™ is on another level. So comfortable and the protection is incredible.",
     verified: true,
   },
   {

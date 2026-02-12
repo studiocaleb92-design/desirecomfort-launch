@@ -15,7 +15,7 @@ const SolutionSection = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
               <img
                 src={SOLUTION_IMAGE}
-                alt="DesireComfort period underwear"
+                alt="Desire Comfort™ period underwear"
                 onError={(e) => { e.currentTarget.src = productImage; }}
                 className="w-full h-auto object-cover"
               />
@@ -33,7 +33,7 @@ const SolutionSection = () => {
           {/* Content */}
           <div className="order-1 lg:order-2">
             <span className="text-sm font-medium tracking-wider text-primary uppercase">
-              Introducing DesireComfort
+              Introducing Desire Comfort™
             </span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mt-4">
               Protection that feels like nothing at all

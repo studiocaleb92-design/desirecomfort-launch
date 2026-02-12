@@ -22,11 +22,17 @@ import productVariants from "@/assets/product-variants.jpg";
 import { getCompareAtPrice, getSavings, roundToTwoDecimals } from "@/lib/utils";
 
 const sizes = ["XS", "S", "M", "L", "XL", "2XL"];
+// Supplier colors: original + Caramel, Apricot, Khaki, Lava, White (1688)
 const colors = [
   { name: "Blush Pink", class: "bg-[hsl(355,45%,70%)]" },
   { name: "Dusty Rose", class: "bg-[hsl(355,40%,55%)]" },
   { name: "Cream", class: "bg-[hsl(40,40%,90%)]" },
   { name: "Black", class: "bg-[hsl(0,0%,15%)]" },
+  { name: "Caramel", class: "bg-[hsl(30,45%,55%)]" },
+  { name: "Apricot", class: "bg-[hsl(35,50%,85%)]" },
+  { name: "Khaki", class: "bg-[hsl(45,25%,45%)]" },
+  { name: "Lava", class: "bg-[hsl(350,35%,35%)]" },
+  { name: "White", class: "bg-white border border-border" },
 ];
 
 // Local videos (uploaded to public/videos) — filename encoded in src for spaces/parentheses
@@ -36,18 +42,28 @@ const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
   { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
 ];
 
-// Per-color images: Everdries (pnpm run download-everdries-images). Fallback when image 404s.
+// Per-color images. New supplier colors use existing assets until dedicated images are added.
 const COLOR_IMAGES_SRC: Record<string, string[]> = {
   "Blush Pink": ["/images/blush-pink.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Dusty Rose": ["/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Cream": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Black": ["/images/black.jpg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
+  "Caramel": ["/images/cream.jpg", "/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg"],
+  "Apricot": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Khaki": ["/images/cream.jpg", "/images/black.jpg", "/images/everdries-gallery-3.jpg"],
+  "Lava": ["/images/dusty-rose.jpg", "/images/black.jpg", "/images/everdries-gallery-4.jpg"],
+  "White": ["/images/everdries-white.jpg", "/images/cream.jpg", "/images/everdries-gallery-2.jpg"],
 };
 const FALLBACK_BY_COLOR: Record<string, string[]> = {
   "Blush Pink": [productHero, productVariants, "/images/blush-pink.jpg"],
   "Dusty Rose": [productHero, productVariants, "/images/dusty-rose.jpg"],
   "Cream": [productHero, productVariants, "/images/cream.jpg"],
   "Black": [productHero, productVariants, "/images/black.jpg"],
+  "Caramel": [productHero, productVariants, "/images/cream.jpg"],
+  "Apricot": [productHero, productVariants, "/images/cream.jpg"],
+  "Khaki": [productHero, productVariants, "/images/cream.jpg"],
+  "Lava": [productHero, productVariants, "/images/dusty-rose.jpg"],
+  "White": [productHero, productVariants, "/images/everdries-white.jpg"],
 };
 const COLOR_IMAGES = COLOR_IMAGES_SRC;
 const FALLBACK_IMAGES = [productHero, productVariants, productHero];
@@ -93,7 +109,7 @@ const Product = () => {
               <div className="aspect-square rounded-2xl overflow-hidden bg-cream-dark">
                 <img
                   src={images[activeImage]}
-                  alt={`DesireComfort Period Underwear — ${selectedColor}`}
+                  alt={`Desire Comfort™ Period Underwear — ${selectedColor}`}
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const el = e.currentTarget;

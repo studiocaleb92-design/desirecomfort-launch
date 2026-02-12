@@ -25,9 +25,9 @@ const HeroSection = () => {
 
           {/* Hero brand — logo + name that stays on one line */}
           <div className="animate-fade-in-up animation-delay-100">
-            <img src="/logo.svg" alt="DesireComfort" className="h-12 md:h-14 w-auto mx-auto mb-4" />
+            <img src="/logo.svg" alt="Desire Comfort™" className="h-12 md:h-14 w-auto mx-auto mb-4" />
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium font-serif text-foreground tracking-[0.2em] whitespace-nowrap">
-              DESIRE–COMFORT
+              DESIRE–COMFORT™
             </h1>
           </div>
 
