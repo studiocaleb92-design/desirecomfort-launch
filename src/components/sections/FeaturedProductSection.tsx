@@ -24,28 +24,28 @@ const BUNDLE_SIZES = [
   { label: "20-Pack", qty: 20 },
 ] as const;
 
-// Per-color image: Everdries (pnpm run download-everdries-images). Fallback: assets.
+// Per-color image. Replace .svg with .jpg in public/images/ when you have real product photos for the 5 new colors.
 const COLOR_IMAGE_SRC: Record<string, string> = {
   "Blush Pink": "/images/blush-pink.jpg",
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
-  "Caramel": "/images/cream.jpg",
-  "Apricot": "/images/cream.jpg",
-  "Khaki": "/images/cream.jpg",
-  "Lava": "/images/dusty-rose.jpg",
-  "White": "/images/everdries-white.jpg",
+  "Caramel": "/images/caramel.svg",
+  "Apricot": "/images/apricot.svg",
+  "Khaki": "/images/khaki.svg",
+  "Lava": "/images/lava.svg",
+  "White": "/images/white.svg",
 };
 const FALLBACK_IMAGE_BY_COLOR: Record<string, string> = {
   "Blush Pink": "/images/blush-pink.jpg",
   "Dusty Rose": "/images/dusty-rose.jpg",
   "Cream": "/images/cream.jpg",
   "Black": "/images/black.jpg",
-  "Caramel": "/images/cream.jpg",
-  "Apricot": "/images/cream.jpg",
-  "Khaki": "/images/cream.jpg",
-  "Lava": "/images/dusty-rose.jpg",
-  "White": "/images/everdries-white.jpg",
+  "Caramel": "/images/caramel.svg",
+  "Apricot": "/images/apricot.svg",
+  "Khaki": "/images/khaki.svg",
+  "Lava": "/images/lava.svg",
+  "White": "/images/white.svg",
 };
 const COLOR_IMAGE = COLOR_IMAGE_SRC;
 

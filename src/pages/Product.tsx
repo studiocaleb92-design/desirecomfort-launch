@@ -42,28 +42,28 @@ const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
   { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
 ];
 
-// Per-color images. New supplier colors use existing assets until dedicated images are added.
+// Per-color images. Replace caramel.svg, apricot.svg, khaki.svg, lava.svg, white.svg with .jpg when you have real product photos.
 const COLOR_IMAGES_SRC: Record<string, string[]> = {
   "Blush Pink": ["/images/blush-pink.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Dusty Rose": ["/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Cream": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
   "Black": ["/images/black.jpg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
-  "Caramel": ["/images/cream.jpg", "/images/dusty-rose.jpg", "/images/everdries-gallery-2.jpg"],
-  "Apricot": ["/images/cream.jpg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
-  "Khaki": ["/images/cream.jpg", "/images/black.jpg", "/images/everdries-gallery-3.jpg"],
-  "Lava": ["/images/dusty-rose.jpg", "/images/black.jpg", "/images/everdries-gallery-4.jpg"],
-  "White": ["/images/everdries-white.jpg", "/images/cream.jpg", "/images/everdries-gallery-2.jpg"],
+  "Caramel": ["/images/caramel.svg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Apricot": ["/images/apricot.svg", "/images/everdries-gallery-2.jpg", "/images/everdries-gallery-3.jpg"],
+  "Khaki": ["/images/khaki.svg", "/images/everdries-gallery-3.jpg", "/images/everdries-gallery-4.jpg"],
+  "Lava": ["/images/lava.svg", "/images/everdries-gallery-4.jpg", "/images/everdries-gallery-3.jpg"],
+  "White": ["/images/white.svg", "/images/everdries-white.jpg", "/images/everdries-gallery-2.jpg"],
 };
 const FALLBACK_BY_COLOR: Record<string, string[]> = {
   "Blush Pink": [productHero, productVariants, "/images/blush-pink.jpg"],
   "Dusty Rose": [productHero, productVariants, "/images/dusty-rose.jpg"],
   "Cream": [productHero, productVariants, "/images/cream.jpg"],
   "Black": [productHero, productVariants, "/images/black.jpg"],
-  "Caramel": [productHero, productVariants, "/images/cream.jpg"],
-  "Apricot": [productHero, productVariants, "/images/cream.jpg"],
-  "Khaki": [productHero, productVariants, "/images/cream.jpg"],
-  "Lava": [productHero, productVariants, "/images/dusty-rose.jpg"],
-  "White": [productHero, productVariants, "/images/everdries-white.jpg"],
+  "Caramel": [productHero, productVariants, "/images/caramel.svg"],
+  "Apricot": [productHero, productVariants, "/images/apricot.svg"],
+  "Khaki": [productHero, productVariants, "/images/khaki.svg"],
+  "Lava": [productHero, productVariants, "/images/lava.svg"],
+  "White": [productHero, productVariants, "/images/white.svg"],
 };
 const COLOR_IMAGES = COLOR_IMAGES_SRC;
 const FALLBACK_IMAGES = [productHero, productVariants, productHero];

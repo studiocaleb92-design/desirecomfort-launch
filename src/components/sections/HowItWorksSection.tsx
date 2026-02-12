@@ -144,7 +144,7 @@ const HowItWorksSection = () => {
           </div>
 
           {/* Trust badges — Modibodi-style */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
             {trustBadges.map(({ label, value, icon: Icon }) => (
               <div key={label} className="text-center p-6 rounded-2xl bg-background border border-border/50">
                 <div className="w-12 h-12 rounded-full bg-blush-light flex items-center justify-center mx-auto mb-4">
@@ -154,6 +154,38 @@ const HowItWorksSection = () => {
                 <p className="text-lg font-bold text-warm-brown mt-1">{value}</p>
               </div>
             ))}
+          </div>
+
+          {/* OEKO-TEX® certification badge + link */}
+          <div className="flex flex-col items-center justify-center gap-4 mb-16 p-6 rounded-2xl bg-background border border-border/50 max-w-md mx-auto">
+            <a
+              href="https://www.oeko-tex.com/en/our-standards/standard-100-by-oeko-tex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus:outline-none focus:ring-2 focus:ring-primary/40 rounded-lg"
+              aria-label="OEKO-TEX Standard 100 — textiles tested for harmful substances"
+            >
+              <img
+                src="/images/oeko-tex-badge.svg"
+                alt="OEKO-TEX® STANDARD 100 — Certified textiles tested for harmful substances"
+                className="h-12 w-auto mx-auto"
+                width="120"
+                height="48"
+              />
+            </a>
+            <p className="text-sm font-semibold text-primary uppercase tracking-wide">OEKO-TEX®</p>
+            <p className="text-lg font-bold text-warm-brown">CERTIFIED</p>
+            <p className="text-center text-sm text-muted-foreground mt-1">
+              Tested for harmful substances.{" "}
+              <a
+                href="https://www.oeko-tex.com/en/our-standards/standard-100-by-oeko-tex"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Learn more
+              </a>
+            </p>
           </div>
 
           {/* TRIED. TESTED. TRUE. — Modibodi-style */}
