@@ -13,11 +13,10 @@ import SocialProofSection from "@/components/sections/SocialProofSection";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import CTASection from "@/components/sections/CTASection";
 
-// Same 3 videos as on Product page (public/videos)
+// Same videos as on Product page (public/videos)
 const HOME_VIDEO_FILES: { filename: string; title: string }[] = [
-  { filename: "FDownloader.Net_AQOMe06JL1S0JuWve6X9wcBaecBBpTHUvLsOfsOvWzFn-lmb_6XT9SB3EyeKv1nRo9XA2SDTdndE1nbkK9z7Afu_FPZclFM6PdeY977NnN7Kow_720p_(HD).mp4", title: "How it works" },
-  { filename: "FDownloader.net-2142650612827084-(1080p) (1).mp4", title: "Comfort & protection" },
-  { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
+  { filename: "hf_20260319_062456_52468f2b-fc9e-4262-a66b-adc0a8b3e825.mp4", title: "How it works" },
+  { filename: "hf_20260326_174955_49a25311-fd30-4578-abf0-36a9b0143862.mp4", title: "Comfort & protection" },
 ];
 
 const Index = () => {
@@ -48,7 +47,7 @@ const Index = () => {
         <div id="order" className={scrollMarginClass}>
           <FeaturedProductSection />
         </div>
-        {/* Product videos — 3 videos, visible on homepage */}
+        {/* Product videos, visible on homepage */}
         <section id="videos" className={`section-padding bg-cream-dark ${scrollMarginClass}`} aria-label="Product videos">
           <div className="container mx-auto">
             <h2 className="font-serif text-3xl md:text-4xl font-medium text-foreground text-center mb-10">

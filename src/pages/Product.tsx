@@ -33,9 +33,8 @@ const colors = [
 
 // Local videos (uploaded to public/videos) — filename encoded in src for spaces/parentheses
 const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
-  { filename: "FDownloader.Net_AQOMe06JL1S0JuWve6X9wcBaecBBpTHUvLsOfsOvWzFn-lmb_6XT9SB3EyeKv1nRo9XA2SDTdndE1nbkK9z7Afu_FPZclFM6PdeY977NnN7Kow_720p_(HD).mp4", title: "How it works" },
-  { filename: "FDownloader.net-2142650612827084-(1080p) (1).mp4", title: "Comfort & protection" },
-  { filename: "FDownloader.net-972242837872958-(1080p).mp4", title: "Care & wash" },
+  { filename: "hf_20260319_062456_52468f2b-fc9e-4262-a66b-adc0a8b3e825.mp4", title: "How it works" },
+  { filename: "hf_20260326_174955_49a25311-fd30-4578-abf0-36a9b0143862.mp4", title: "Comfort & protection" },
 ];
 
 // Per-color images: only colors that have matching product photos
@@ -357,7 +356,7 @@ const Product = () => {
                 </div>
               </div>
 
-              {/* Product videos — 3 videos from public/videos */}
+              {/* Product videos from public/videos */}
               <div id="product-videos" className="mt-8 pt-8 border-t border-border space-y-10">
                 <h3 className="font-serif text-xl font-medium text-foreground">Videos</h3>
                 {PRODUCT_VIDEO_FILES.map((video, index) => (
