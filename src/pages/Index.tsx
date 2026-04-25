@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import PainSection from "@/components/sections/PainSection";
 import SolutionSection from "@/components/sections/SolutionSection";
-import AsSeenOnSection from "@/components/sections/AsSeenOnSection";
 import ProductGallerySection from "@/components/sections/ProductGallerySection";
 import FeaturedProductSection from "@/components/sections/FeaturedProductSection";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
@@ -44,13 +43,12 @@ const Index = () => {
         <HeroSection />
         <PainSection />
         <SolutionSection />
-        <AsSeenOnSection />
         <ProductGallerySection />
         <FeaturedProductSection />
+        <ComparisonSection />
         <GuaranteeSection />
         <HowItWorksStepsSection />
         <DailyRoutineSection />
-        <ComparisonSection />
         <section id="videos" className={`section-padding bg-cream-dark ${HEADER_SCROLL_ANCHOR_CLASS}`} aria-label="Product videos">
           <div className="container mx-auto">
             <h2 className="mb-10 text-center font-serif text-3xl font-medium text-foreground md:text-4xl">See how it works</h2>

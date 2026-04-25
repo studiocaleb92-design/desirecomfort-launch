@@ -53,7 +53,7 @@ const Footer = () => {
             <h4 className="font-serif text-lg font-medium mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-3">
               <Link to="/#order" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                Order Now
+                Get Yours Now - 30% Off
               </Link>
               <Link to="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 How It Works

@@ -4,7 +4,7 @@ import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 const testimonials = [
   {
     name: "Sarah M.",
-    location: "Los Angeles, CA",
+    location: "Lagos",
     rating: 5,
     text: "I was skeptical at first, but these have completely changed my period experience. No more midnight panics about leaks. I actually forget I'm on my period!",
     verified: true,
@@ -12,7 +12,7 @@ const testimonials = [
   },
   {
     name: "Jessica T.",
-    location: "Austin, TX",
+    location: "Abuja",
     rating: 5,
     text: "Finally, underwear that actually works. I've tried other brands but Desire Comfort™ is on another level. So comfortable and the protection is incredible.",
     verified: true,
@@ -20,7 +20,7 @@ const testimonials = [
   },
   {
     name: "Michelle K.",
-    location: "New York, NY",
+    location: "Port Harcourt",
     rating: 5,
     text: "As a nurse on 12-hour shifts, I needed something reliable. These are a lifesaver. No more worrying during my busiest days.",
     verified: true,
@@ -28,7 +28,7 @@ const testimonials = [
   },
   {
     name: "Amanda R.",
-    location: "Seattle, WA",
+    location: "Ibadan",
     rating: 5,
     text: "I bought these for my heavy flow days and they haven't let me down once. Plus they're so cute I forget they're period underwear!",
     verified: true,
@@ -93,7 +93,7 @@ const SocialProofSection = () => {
                   </div>
                 </div>
                 {testimonial.verified && (
-                  <span className="shrink-0 rounded-full bg-success/10 px-3 py-1 text-sm font-semibold text-success">Verified</span>
+                  <span className="shrink-0 rounded-full bg-success/10 px-3 py-1 text-sm font-semibold text-success">Verified Buyer</span>
                 )}
               </div>
             </div>

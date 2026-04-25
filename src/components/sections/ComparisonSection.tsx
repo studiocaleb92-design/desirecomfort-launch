@@ -1,9 +1,9 @@
 import { Check, X } from "lucide-react";
 const rows = [
-  { label: "Feels like real underwear", us: true, pads: false },
-  { label: "No crinkle sound or shifting", us: true, pads: false },
-  { label: "Reusable — less waste", us: true, pads: false },
-  { label: "Wash & wear for years*", us: true, pads: false },
+  { label: "Reusable", us: true, pads: false },
+  { label: "No bulk", us: true, pads: false },
+  { label: "Leak protection", us: true, pads: false },
+  { label: "Comfort", us: true, pads: false },
 ];
 
 const ComparisonSection = () => {
@@ -12,7 +12,7 @@ const ComparisonSection = () => {
       <div className="container mx-auto max-w-3xl">
         <div className="mb-10 text-center">
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">Why switch</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">Better than pads &amp; disposable diapers</h2>
+          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">Desire Comfort™ vs Pads / Diapers</h2>
           <p className="mt-3 text-base font-medium text-foreground/85">
             Same leak security with a slimmer profile — without the plastic feel or constant adjusting.
           </p>
@@ -21,7 +21,7 @@ const ComparisonSection = () => {
           <div className="grid grid-cols-[1fr_auto_auto] gap-2 border-b border-border bg-muted/40 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:px-6 sm:text-sm">
             <span> </span>
             <span className="text-center text-primary">Desire Comfort™</span>
-            <span className="text-center">Pads / disposables</span>
+            <span className="text-center">Pads / diapers</span>
           </div>
           {rows.map((row) => (
             <div
@@ -38,7 +38,7 @@ const ComparisonSection = () => {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-center text-xs text-muted-foreground">*With proper care — see product care instructions.</p>
+        <p className="mt-4 text-center text-xs text-muted-foreground">Pads and disposable diapers offer only limited leak control and less comfort.</p>
       </div>
     </section>
   );

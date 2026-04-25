@@ -14,7 +14,7 @@ const Header = () => {
 
   const navLinks = [
     { to: "/", label: "Home", hashMatch: "" },
-    { to: "/#order", label: "Order Now", hashMatch: "#order" },
+    { to: "/#order", label: "Get Yours Now - 30% Off", hashMatch: "#order" },
     { to: "/#about", label: "About Us", hashMatch: "#about" },
     { to: "/#contact", label: "Contact Us", hashMatch: "#contact" },
     { to: "/#faq", label: "FAQ", hashMatch: "#faq" },
@@ -76,7 +76,7 @@ const Header = () => {
             <Button variant="hero" size="default" asChild>
               <Link to="/#order">
                 <ShoppingBag className="h-4 w-4" />
-                Shop Now
+                Get Yours Now - 30% Off
               </Link>
             </Button>
           </div>
@@ -102,7 +102,7 @@ const Header = () => {
               <Button variant="hero" size="lg" className="mt-2 w-full" asChild>
                 <Link to="/#order" onClick={() => setIsMenuOpen(false)}>
                   <ShoppingBag className="h-4 w-4" />
-                  Shop Now
+                  Get Yours Now - 30% Off
                 </Link>
               </Button>
             </nav>

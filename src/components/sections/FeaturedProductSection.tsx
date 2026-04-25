@@ -72,6 +72,7 @@ const FeaturedProductSection = () => {
             <p className="text-sm font-medium text-muted-foreground">
               ${totals.unitSale.toFixed(2)} per pair · {bundleQty} pairs
             </p>
+            <p className="text-sm font-semibold text-[#B45309]">Offer ends soon - limited stock available</p>
             <ul className="space-y-2 text-base font-medium text-foreground/90">
               <li>👗 Discreet Everyday Fit</li>
               <li>♻️ Reusable &amp; Washable</li>
@@ -164,7 +165,7 @@ const FeaturedProductSection = () => {
                 }}
               >
                 <ShoppingBag className="h-5 w-5" />
-                Order Now — ${totals.totalSale.toFixed(2)}
+                Get Yours Now - 30% Off - ${totals.totalSale.toFixed(2)}
               </Button>
             </div>
           </div>

@@ -28,7 +28,7 @@ const StickyCtaBar = () => {
           <Button variant="hero" size="default" className="min-h-11 shrink-0 px-4 sm:min-h-10" asChild>
             <Link to="/#order">
               <ShoppingBag className="h-4 w-4" />
-              Shop
+              Buy Now - Limited Offer
             </Link>
           </Button>
         </div>

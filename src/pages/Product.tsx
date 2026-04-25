@@ -133,6 +133,7 @@ const Product = () => {
               <p className="mt-1 text-sm text-muted-foreground">
                 ${totals.unitSale.toFixed(2)} per pair · {bundleQty} pairs
               </p>
+              <p className="mt-2 text-sm font-medium text-[#B45309]">Limited stock available - offer ends soon</p>
 
               <p className="mt-6 text-base font-medium leading-relaxed text-foreground/90">
                 Ultra-thin, leak-proof period underwear designed for all-day comfort. Our 4-layer technology absorbs up
@@ -246,7 +247,7 @@ const Product = () => {
                   }}
                 >
                   <ShoppingBag className="h-5 w-5" />
-                  Add to Cart — ${totals.totalSale.toFixed(2)}
+                  Buy Now - Limited Offer - ${totals.totalSale.toFixed(2)}
                 </Button>
                 <p className="mt-3 text-center text-sm text-muted-foreground">
                   Prefer to shop on the homepage?{" "}

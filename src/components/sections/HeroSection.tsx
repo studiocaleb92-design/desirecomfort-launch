@@ -37,12 +37,12 @@ const HeroSection = () => {
 
           {/* Slogan */}
           <p className="text-hero-sub mt-4 animate-fade-in-up animation-delay-200">
-            Leak-Proof Period Panties That Feel Like Real Underwear
+            No Leaks. No Bulk. No Worry.
           </p>
 
           {/* Trust line */}
           <p className="text-sm text-muted-foreground mt-2 animate-fade-in-up animation-delay-300">
-            Designed for comfort & leak protection.
+            Feel safe, dry, and confident all day with breathable comfort and dependable leak protection.
           </p>
 
           {/* CTA */}
@@ -50,7 +50,7 @@ const HeroSection = () => {
             <Button variant="hero" size="xl" className="min-h-12 px-8" asChild>
               <Link to="/#order">
                 <ShoppingBag className="w-5 h-5" />
-                BUY NOW
+                Get Yours Now - 30% Off
               </Link>
             </Button>
           </div>

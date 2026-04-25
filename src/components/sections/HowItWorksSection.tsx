@@ -162,7 +162,7 @@ const HowItWorksSection = () => {
               to="/#order"
               className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Shop Now
+              Get Yours Now - 30% Off
             </Link>
           </div>
         </div>
