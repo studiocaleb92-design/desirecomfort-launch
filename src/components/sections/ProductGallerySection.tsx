@@ -32,13 +32,15 @@ const ProductGallerySection = () => {
           {galleryImages.map((img, index) => (
             <Link
               key={index}
-              to="/product"
-              className="flex-shrink-0 w-64 h-64 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-border/50 hover:border-primary/40 transition-colors shadow-soft hover:shadow-elevated"
+              to="/#order"
+              className="h-64 w-64 flex-shrink-0 overflow-hidden rounded-2xl border border-border/50 shadow-soft transition-colors hover:border-primary/40 hover:shadow-elevated md:h-72 md:w-72"
             >
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   if (img.fallback) e.currentTarget.src = img.fallback;
                 }}
@@ -47,11 +49,8 @@ const ProductGallerySection = () => {
           ))}
         </div>
         <p className="text-center mt-6">
-          <Link
-            to="/product"
-            className="text-sm font-medium text-primary hover:underline"
-          >
-            View full product & order →
+          <Link to="/#order" className="text-sm font-medium text-primary hover:underline">
+            Shop featured pack →
           </Link>
         </p>
       </div>

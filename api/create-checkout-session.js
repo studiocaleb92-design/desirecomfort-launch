@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
   const origin = successUrl?.replace(/\/[^/]*$/, "") || req.headers.origin || "http://localhost:5173";
   const success = successUrl || `${origin}/order-success`;
-  const cancel = cancelUrl || `${origin}/product`;
+  const cancel = cancelUrl || `${origin}/`;
 
   try {
     const lineItems = items.map((item) => ({

@@ -4,7 +4,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/context/CartContext";
+import { ProductOfferProvider } from "@/context/ProductOfferContext";
 import CartDrawer from "@/components/CartDrawer";
+import StickyCtaBar from "@/components/StickyCtaBar";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
 import Product from "./pages/Product";
 import About from "./pages/About";
@@ -27,22 +30,26 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <CartProvider>
-          <CartDrawer />
-          <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/refund" element={<Refund />} />
-          <Route path="/shipping" element={<Shipping />} />
-          <Route path="/order-success" element={<OrderSuccess />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ProductOfferProvider>
+            <CartDrawer />
+            <StickyCtaBar />
+            <WhatsAppFloat />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/refund" element={<Refund />} />
+              <Route path="/shipping" element={<Shipping />} />
+              <Route path="/order-success" element={<OrderSuccess />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ProductOfferProvider>
         </CartProvider>
       </BrowserRouter>
     </TooltipProvider>

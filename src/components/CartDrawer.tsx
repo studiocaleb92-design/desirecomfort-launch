@@ -97,7 +97,7 @@ const CartDrawer = () => {
                     body: JSON.stringify({
                       items: items.map(({ id: _id, ...item }) => item),
                       successUrl: `${origin}/order-success`,
-                      cancelUrl: `${origin}/product`,
+                      cancelUrl: `${origin}/`,
                     }),
                   });
                   const text = await res.text();

@@ -21,18 +21,22 @@ const Footer = () => {
             </p>
             <div className="flex gap-4 mt-6">
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-blush-light flex items-center justify-center text-warm-brown hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Instagram"
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-blush-light text-warm-brown transition-colors hover:bg-primary hover:text-primary-foreground"
+                aria-label="Instagram (opens in new tab)"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-blush-light flex items-center justify-center text-warm-brown hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Facebook"
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-blush-light text-warm-brown transition-colors hover:bg-primary hover:text-primary-foreground"
+                aria-label="Facebook (opens in new tab)"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="mailto:info@desire-comfort.com"
@@ -48,16 +52,16 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg font-medium mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/product" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/#order" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                 Order Now
               </Link>
               <Link to="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 How It Works
               </Link>
-              <Link to="/reviews" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/#reviews" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                 Reviews
               </Link>
-              <Link to="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/#faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                 FAQ
               </Link>
             </nav>
@@ -73,9 +77,9 @@ const Footer = () => {
               <Link to="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Returns
               </Link>
-              <a href="/product#size-guide" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                 Size Guide
-              </a>
+              </Link>
               <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact Us
               </Link>

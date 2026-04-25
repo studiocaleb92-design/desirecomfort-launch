@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Shield, Droplets, Heart } from "lucide-react";
 import heroImage from "@/assets/hero-lifestyle.jpg";
@@ -10,7 +11,10 @@ const HeroSection = () => {
         <img
           src={heroImage}
           alt="Woman relaxing comfortably"
-          className="w-full h-full object-cover object-center opacity-40"
+          className="h-full w-full object-cover object-center opacity-40"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
@@ -43,12 +47,12 @@ const HeroSection = () => {
 
           {/* CTA */}
           <div className="mt-4 animate-fade-in-up animation-delay-300">
-            <a href="#order">
-              <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" className="min-h-12 px-8" asChild>
+              <Link to="/#order">
                 <ShoppingBag className="w-5 h-5" />
                 BUY NOW
-              </Button>
-            </a>
+              </Link>
+            </Button>
           </div>
 
           {/* Quick Benefits — centered */}

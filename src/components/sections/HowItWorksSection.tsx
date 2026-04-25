@@ -1,26 +1,5 @@
-import { Package, Sparkles, Heart, Droplets, Layers, Shield, CheckCircle2 } from "lucide-react";
+import { Heart, Droplets, Layers, Shield, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const steps = [
-  {
-    number: "01",
-    icon: Package,
-    title: "Choose Your Style",
-    description: "Pick from our range of sizes and colors. We have options for every body and every flow.",
-  },
-  {
-    number: "02",
-    icon: Sparkles,
-    title: "Wear With Confidence",
-    description: "Simply put them on like regular underwear. The 4-layer technology does all the work.",
-  },
-  {
-    number: "03",
-    icon: Heart,
-    title: "Live Your Life",
-    description: "Go about your day worry-free. When you're done, rinse, wash, and reuse.",
-  },
-];
 
 const layers = [
   {
@@ -51,7 +30,7 @@ const trustBadges = [
 
 const HowItWorksSection = () => {
   return (
-    <section id="how-it-works" className="scroll-mt-[11rem]">
+    <section>
       {/* Anti Leak. Pro You — Modibodi-style repeating banner */}
       <div className="bg-gradient-to-r from-primary/15 via-primary/10 to-primary/15 border-y border-border/50 py-6 overflow-hidden">
         <div className="flex w-max animate-marquee">
@@ -78,38 +57,13 @@ const HowItWorksSection = () => {
         <div className="container mx-auto">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-base font-semibold tracking-wider text-primary uppercase">
-              Simple & Easy
-            </span>
+            <span className="text-base font-semibold tracking-wider text-primary uppercase">Deep dive</span>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mt-4">
-              How It Works
+              Technology &amp; protection
             </h2>
             <p className="text-lg font-medium text-foreground/90 mt-4">
-              It&apos;s as simple as 1, 2, 3. No complicated routines—just effortless protection that feels like real underwear.
+              Go deeper on fabrics, layers, and how we test — so you know exactly what you&apos;re wearing.
             </p>
-          </div>
-
-          {/* 3 Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto mb-20">
-            {steps.map((step, index) => (
-              <div key={index} className="relative text-center">
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/40 to-transparent" />
-                )}
-                <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-blush-light mb-6">
-                  <span className="absolute -top-2 -right-2 text-xs font-bold text-primary bg-background px-2 py-1 rounded-full border border-primary/20">
-                    {step.number}
-                  </span>
-                  <step.icon className="w-10 h-10 text-primary" />
-                </div>
-                <h3 className="font-serif text-xl font-medium text-foreground mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-base font-medium text-foreground/90 leading-relaxed max-w-xs mx-auto">
-                  {step.description}
-                </p>
-              </div>
-            ))}
           </div>
 
           {/* Technology — Snuggs-style layer explanation */}
@@ -205,8 +159,8 @@ const HowItWorksSection = () => {
           {/* CTA */}
           <div className="text-center mt-16">
             <Link
-              to="/product"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+              to="/#order"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Shop Now
             </Link>

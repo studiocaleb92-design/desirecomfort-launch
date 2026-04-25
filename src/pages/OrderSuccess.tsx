@@ -8,7 +8,7 @@ const OrderSuccess = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 md:pt-28 pb-16">
+      <main className="pb-28 pt-24 md:pb-32 md:pt-28">
         <div className="container mx-auto px-4 max-w-lg text-center">
           <CheckCircle className="w-16 h-16 text-success mx-auto mb-6" />
           <h1 className="font-serif text-2xl md:text-3xl font-medium text-foreground mb-2">

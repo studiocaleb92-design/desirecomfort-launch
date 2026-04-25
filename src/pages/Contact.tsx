@@ -11,8 +11,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-36 md:pt-44 pb-16">
-        <div id="page-content" className="container mx-auto px-4 py-12 md:py-20 scroll-mt-[11rem]">
+      <main className="pb-28 pt-36 md:pb-32 md:pt-44">
+        <div id="page-content" className="container mx-auto scroll-mt-[var(--header-scroll-offset)] px-4 py-12 md:py-20">
           <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
             Contact Us
           </h1>
