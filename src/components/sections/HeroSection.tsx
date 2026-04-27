@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Shield, Droplets, Heart } from "lucide-react";
+import { ShoppingBag, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-lifestyle.jpg";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 
 const HeroSection = () => {
   return (
@@ -19,7 +20,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
 
-      <div className="container mx-auto px-4 pt-24 pb-16 md:pt-32 md:pb-24 relative z-10 flex flex-col items-center text-center">
+      <div className="container mx-auto px-4 pt-20 pb-14 md:pt-28 md:pb-20 relative z-10 flex flex-col items-center text-center">
         <div className="max-w-2xl">
           {/* Trust Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush-light/80 backdrop-blur-sm text-warm-brown text-sm font-medium mb-6 animate-fade-in-up">
@@ -27,22 +28,24 @@ const HeroSection = () => {
             Trusted by 50,000+ Women
           </div>
 
-          {/* Hero brand — logo + name that stays on one line */}
+          {/* Hero brand — logo + name */}
           <div className="animate-fade-in-up animation-delay-100">
             <img src="/logo.svg" alt="Desire Comfort™" className="h-12 md:h-14 w-auto mx-auto mb-4" />
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium font-serif text-foreground tracking-[0.2em] whitespace-nowrap">
+            <p className="text-lg sm:text-xl md:text-2xl font-medium font-serif text-foreground tracking-[0.2em] whitespace-nowrap">
               DESIRE–COMFORT™
-            </h1>
+            </p>
           </div>
 
-          {/* Slogan */}
-          <p className="text-hero-sub mt-4 animate-fade-in-up animation-delay-200">
-            No Leaks. No Bulk. No Worry.
-          </p>
+          {/* Benefit headline */}
+          <h1 className="mt-4 font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight tracking-tight animate-fade-in-up animation-delay-200">
+            Stay Dry, Comfortable, and Confident All Day
+          </h1>
 
-          {/* Trust line */}
-          <p className="text-sm text-muted-foreground mt-2 animate-fade-in-up animation-delay-300">
-            Feel safe, dry, and confident all day with breathable comfort and dependable leak protection.
+          {/* Subtext — leak protection, comfort, confidence */}
+          <p className="text-hero-sub mt-4 max-w-xl mx-auto animate-fade-in-up animation-delay-300">
+            <span className="font-medium text-foreground/90">Leak-proof protection</span> you can count on,{" "}
+            <span className="font-medium text-foreground/90">breathable comfort</span> that never feels bulky, and the{" "}
+            <span className="font-medium text-foreground/90">confidence</span> to move through your day without worry.
           </p>
 
           {/* CTA */}
@@ -50,25 +53,12 @@ const HeroSection = () => {
             <Button variant="hero" size="xl" className="min-h-12 px-8" asChild>
               <Link to="/#order">
                 <ShoppingBag className="w-5 h-5" />
-                Get Yours Now - 30% Off
+                {CTA_PRIMARY_LABEL}
               </Link>
             </Button>
-          </div>
-
-          {/* Quick Benefits — centered */}
-          <div className="flex flex-wrap justify-center gap-6 mt-10 animate-fade-in-up animation-delay-400">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Droplets className="w-4 h-4 text-primary" />
-              Leak-Proof Protection
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Heart className="w-4 h-4 text-primary" />
-              All-Day Comfort
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Shield className="w-4 h-4 text-primary" />
-              Free Shipping
-            </div>
+            <p className="mt-3 text-xs font-medium text-muted-foreground">
+              Secure checkout · 30-day guarantee · Fast delivery
+            </p>
           </div>
         </div>
       </div>

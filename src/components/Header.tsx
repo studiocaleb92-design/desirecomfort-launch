@@ -3,6 +3,7 @@ import { Menu, X, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 
 /** Scrolling promo strip — evergreen marketing (no seasonal tie-in). */
 const PROMO_MARQUEE_SEGMENT =
@@ -14,7 +15,7 @@ const Header = () => {
 
   const navLinks = [
     { to: "/", label: "Home", hashMatch: "" },
-    { to: "/#order", label: "Get Yours Now - 30% Off", hashMatch: "#order" },
+    { to: "/#order", label: CTA_PRIMARY_LABEL, hashMatch: "#order" },
     { to: "/#about", label: "About Us", hashMatch: "#about" },
     { to: "/#contact", label: "Contact Us", hashMatch: "#contact" },
     { to: "/#faq", label: "FAQ", hashMatch: "#faq" },
@@ -76,7 +77,7 @@ const Header = () => {
             <Button variant="hero" size="default" asChild>
               <Link to="/#order">
                 <ShoppingBag className="h-4 w-4" />
-                Get Yours Now - 30% Off
+                {CTA_PRIMARY_LABEL}
               </Link>
             </Button>
           </div>
@@ -102,7 +103,7 @@ const Header = () => {
               <Button variant="hero" size="lg" className="mt-2 w-full" asChild>
                 <Link to="/#order" onClick={() => setIsMenuOpen(false)}>
                   <ShoppingBag className="h-4 w-4" />
-                  Get Yours Now - 30% Off
+                  {CTA_PRIMARY_LABEL}
                 </Link>
               </Button>
             </nav>

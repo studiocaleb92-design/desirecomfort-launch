@@ -1,5 +1,6 @@
-import { Heart, Droplets, Layers, Shield, CheckCircle2 } from "lucide-react";
+import { Heart, Droplets, Layers, Shield, CheckCircle2, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 
 const layers = [
   {
@@ -157,13 +158,17 @@ const HowItWorksSection = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-16">
+          <div className="text-center mt-12">
             <Link
               to="/#order"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Get Yours Now - 30% Off
+              <ShoppingBag className="h-5 w-5 shrink-0" aria-hidden />
+              {CTA_PRIMARY_LABEL}
             </Link>
+            <p className="mt-3 text-xs font-medium text-muted-foreground">
+              Secure checkout · 30-day guarantee · Fast delivery
+            </p>
           </div>
         </div>
       </div>

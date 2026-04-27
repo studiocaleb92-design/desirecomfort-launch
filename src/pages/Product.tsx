@@ -13,11 +13,10 @@ import {
   Minus,
   Plus,
   Star,
-  Droplets,
-  Feather,
-  Heart,
   Flame,
+  Check,
 } from "lucide-react";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 import productHero from "@/assets/product-hero.jpg";
 import productVariants from "@/assets/product-variants.jpg";
 import {
@@ -121,7 +120,9 @@ const Product = () => {
 
               <p className="mt-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-[#B45309]">
                 <Flame className="h-4 w-4 shrink-0" aria-hidden />
-                <span>Limited stock · Flash sale {SITE_DISCOUNT_PERCENT}% off · Selling fast</span>
+                <span>
+                  Limited stock · Flash sale {SITE_DISCOUNT_PERCENT}% off · Selling fast · Offer ends soon
+                </span>
               </p>
 
               <div className="mt-6 flex flex-wrap items-baseline gap-2 gap-y-2">
@@ -133,27 +134,30 @@ const Product = () => {
               <p className="mt-1 text-sm text-muted-foreground">
                 ${totals.unitSale.toFixed(2)} per pair · {bundleQty} pairs
               </p>
-              <p className="mt-2 text-sm font-medium text-[#B45309]">Limited stock available - offer ends soon</p>
+              <p className="mt-2 text-sm font-medium text-[#B45309]">
+                Limited stock available · Selling fast · Offer ends soon
+              </p>
+
+              <ul className="mt-5 space-y-2 text-base font-medium text-foreground/90">
+                {(
+                  [
+                    "Leak-proof protection",
+                    "No bulk under clothing",
+                    "Reusable & washable",
+                    "Saves money over time",
+                  ] as const
+                ).map((line) => (
+                  <li key={line} className="flex items-start gap-2.5">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
 
               <p className="mt-6 text-base font-medium leading-relaxed text-foreground/90">
                 Ultra-thin, leak-proof period underwear designed for all-day comfort. Our 4-layer technology absorbs up
                 to 4 tampons worth of fluid while staying incredibly thin and breathable.
               </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-blush-light px-3 py-1.5 text-sm text-warm-brown">
-                  <Droplets className="h-3.5 w-3.5" />
-                  Leak-Proof
-                </div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-blush-light px-3 py-1.5 text-sm text-warm-brown">
-                  <Feather className="h-3.5 w-3.5" />
-                  Ultra-Thin
-                </div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-blush-light px-3 py-1.5 text-sm text-warm-brown">
-                  <Heart className="h-3.5 w-3.5" />
-                  All-Day Comfort
-                </div>
-              </div>
 
               <div className="mt-8">
                 <span className="mb-3 block text-base font-semibold text-foreground">Color</span>
@@ -247,8 +251,11 @@ const Product = () => {
                   }}
                 >
                   <ShoppingBag className="h-5 w-5" />
-                  Buy Now - Limited Offer - ${totals.totalSale.toFixed(2)}
+                  {CTA_PRIMARY_LABEL}
                 </Button>
+                <p className="mt-2 text-center text-xs font-medium text-muted-foreground">
+                  Secure checkout · 30-day guarantee · Fast delivery
+                </p>
                 <p className="mt-3 text-center text-sm text-muted-foreground">
                   Prefer to shop on the homepage?{" "}
                   <Link to="/#order" className="font-medium text-primary hover:underline">

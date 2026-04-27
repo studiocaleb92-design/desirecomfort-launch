@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ShoppingBag, Sparkles } from "lucide-react";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 import productImage from "@/assets/product-hero.jpg";
 
 const SOLUTION_IMAGE = "/images/everdries-gallery-1.jpg";
@@ -59,8 +60,8 @@ const SolutionSection = () => {
 
             <Link to="/product" className="inline-block mt-8">
               <Button variant="hero" size="lg">
-                Discover Your Comfort
-                <ArrowRight className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4" />
+                {CTA_PRIMARY_LABEL}
               </Button>
             </Link>
           </div>

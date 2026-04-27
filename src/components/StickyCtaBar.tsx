@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { useProductOffer } from "@/context/ProductOfferContext";
 import { SITE_DISCOUNT_PERCENT } from "@/lib/productPricing";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 
 const StickyCtaBar = () => {
   const { totals } = useProductOffer();
@@ -28,7 +29,7 @@ const StickyCtaBar = () => {
           <Button variant="hero" size="default" className="min-h-11 shrink-0 px-4 sm:min-h-10" asChild>
             <Link to="/#order">
               <ShoppingBag className="h-4 w-4" />
-              Buy Now - Limited Offer
+              {CTA_PRIMARY_LABEL}
             </Link>
           </Button>
         </div>

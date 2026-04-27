@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook, Mail } from "lucide-react";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 
 const Footer = () => {
   return (
@@ -53,7 +54,7 @@ const Footer = () => {
             <h4 className="font-serif text-lg font-medium mb-4">Quick Links</h4>
             <nav className="flex flex-col gap-3">
               <Link to="/#order" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                Get Yours Now - 30% Off
+                {CTA_PRIMARY_LABEL}
               </Link>
               <Link to="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 How It Works

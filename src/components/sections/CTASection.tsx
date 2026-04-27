@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Shield, Truck } from "lucide-react";
+import { ShoppingBag, Shield, Truck, Lock } from "lucide-react";
+import { CTA_FINAL_SECTION_LABEL } from "@/lib/ctaCopy";
 
 const CTASection = () => {
   return (
@@ -17,30 +18,38 @@ const CTASection = () => {
             Don&apos;t wait. Get your leak-proof comfort today.
           </h2>
           <p className="text-lg text-muted-foreground mt-6 max-w-xl mx-auto">
-            Join over 50,000 women who've made the switch to Desire Comfort™. 
-            Your confidence is waiting.
+            Join over 50,000 women who&apos;ve made the switch to Desire Comfort™. Your confidence is waiting.
           </p>
-          
+
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Link to="/#order">
               <Button variant="hero" size="xl">
                 <ShoppingBag className="w-5 h-5" />
-                Shop Now - 30% Off
+                {CTA_FINAL_SECTION_LABEL}
               </Button>
             </Link>
           </div>
-          <p className="mt-4 text-sm font-medium text-[#B45309]">Selling fast - offer ends soon</p>
-          
+          <p className="mt-3 text-sm font-medium text-[#B45309]">
+            Limited stock available · Selling fast · Offer ends soon
+          </p>
+          <p className="mt-2 text-xs font-medium text-muted-foreground">
+            Secure checkout · 30-day guarantee · Fast delivery
+          </p>
+
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-10">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8 mt-8">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Lock className="w-5 h-5 text-primary" />
+              Secure checkout
+            </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Shield className="w-5 h-5 text-primary" />
-              30-Day Guarantee
+              30-day guarantee
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Truck className="w-5 h-5 text-primary" />
-              Free Shipping Over $50
+              Fast delivery
             </div>
           </div>
         </div>

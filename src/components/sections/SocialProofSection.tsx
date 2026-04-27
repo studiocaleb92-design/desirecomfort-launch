@@ -47,7 +47,7 @@ const SocialProofSection = () => {
   return (
     <section id="reviews" className={`section-padding bg-background ${HEADER_SCROLL_ANCHOR_CLASS}`}>
       <div className="container mx-auto">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
           <span className="text-base font-semibold uppercase tracking-wider text-primary">Trusted by 50,000+ women</span>
           <h2 className="mt-4 font-serif text-3xl font-medium text-foreground md:text-4xl lg:text-5xl">Real reviews from real customers</h2>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
@@ -76,31 +76,36 @@ const SocialProofSection = () => {
 
               <p className="mb-6 text-base font-medium leading-relaxed text-foreground">&ldquo;{testimonial.text}&rdquo;</p>
 
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex min-w-0 items-center gap-3">
-                  <img
-                    src={testimonial.avatar}
-                    alt=""
-                    className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-border/60"
-                    width={48}
-                    height={48}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="truncate text-base font-medium text-foreground/80">{testimonial.location}</p>
-                  </div>
+              <div className="flex min-w-0 items-center gap-3">
+                <img
+                  src={testimonial.avatar}
+                  alt=""
+                  className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-border/60"
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground">{testimonial.name}</p>
+                  <p className="truncate text-sm text-muted-foreground">
+                    {testimonial.verified ? (
+                      <>
+                        <span className="font-semibold text-success">Verified Buyer</span>
+                        <span className="text-muted-foreground"> · </span>
+                        <span>{testimonial.location}</span>
+                      </>
+                    ) : (
+                      testimonial.location
+                    )}
+                  </p>
                 </div>
-                {testimonial.verified && (
-                  <span className="shrink-0 rounded-full bg-success/10 px-3 py-1 text-sm font-semibold text-success">Verified Buyer</span>
-                )}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-4 border-t border-border pt-12 md:gap-8">
+        <div className="mt-10 flex flex-wrap justify-center gap-4 border-t border-border pt-10 md:gap-8">
           {trustBadges.map((badge, index) => (
             <div key={index} className="flex items-center gap-2 text-base font-medium text-foreground/90">
               <span className="h-2 w-2 shrink-0 rounded-full bg-success" />

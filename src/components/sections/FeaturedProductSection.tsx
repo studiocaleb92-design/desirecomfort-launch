@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Flame } from "lucide-react";
+import { ShoppingBag, Flame, Check } from "lucide-react";
+import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 import productHero from "@/assets/product-hero.jpg";
 import { useCart } from "@/context/CartContext";
 import { useProductOffer } from "@/context/ProductOfferContext";
@@ -30,14 +31,14 @@ const FeaturedProductSection = () => {
   return (
     <section id="order" className={`section-padding bg-cream-dark ${HEADER_SCROLL_ANCHOR_CLASS}`}>
       <div className="container mx-auto">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
+        <div className="mx-auto mb-8 max-w-3xl text-center">
           <span className="text-base font-semibold uppercase tracking-wider text-primary">Featured product</span>
           <h2 className="mt-4 font-serif text-3xl font-medium text-foreground md:text-4xl">4-Layer Leakproof Panties</h2>
           <p className="mt-3 flex flex-wrap items-center justify-center gap-2 text-sm font-semibold text-[#B45309]">
             <Flame className="h-4 w-4 shrink-0" aria-hidden />
             <span>Limited stock — Flash sale {SITE_DISCOUNT_PERCENT}% off</span>
             <span className="hidden sm:inline">·</span>
-            <span className="w-full text-center sm:w-auto">Selling fast</span>
+            <span className="w-full text-center sm:w-auto">Selling fast · Offer ends soon</span>
           </p>
         </div>
         <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-8 md:grid-cols-2 lg:gap-16">
@@ -72,13 +73,21 @@ const FeaturedProductSection = () => {
             <p className="text-sm font-medium text-muted-foreground">
               ${totals.unitSale.toFixed(2)} per pair · {bundleQty} pairs
             </p>
-            <p className="text-sm font-semibold text-[#B45309]">Offer ends soon - limited stock available</p>
-            <ul className="space-y-2 text-base font-medium text-foreground/90">
-              <li>👗 Discreet Everyday Fit</li>
-              <li>♻️ Reusable &amp; Washable</li>
-              <li>🛡️ Leak-proof Security</li>
-              <li>🌿 Soft &amp; Breathable</li>
-              <li>🤍 All-day Comfort</li>
+            <p className="text-sm font-semibold text-[#B45309]">Limited stock available · Selling fast · Offer ends soon</p>
+            <ul className="space-y-2.5 text-base font-medium text-foreground/90">
+              {(
+                [
+                  "Leak-proof protection",
+                  "No bulk under clothing",
+                  "Reusable & washable",
+                  "Saves money over time",
+                ] as const
+              ).map((line) => (
+                <li key={line} className="flex items-start gap-2.5">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                  <span>{line}</span>
+                </li>
+              ))}
             </ul>
 
             <div>
@@ -165,9 +174,12 @@ const FeaturedProductSection = () => {
                 }}
               >
                 <ShoppingBag className="h-5 w-5" />
-                Get Yours Now - 30% Off - ${totals.totalSale.toFixed(2)}
+                {CTA_PRIMARY_LABEL}
               </Button>
             </div>
+            <p className="mt-3 text-xs font-medium text-muted-foreground">
+              Secure checkout · 30-day guarantee · Fast delivery
+            </p>
           </div>
         </div>
       </div>
