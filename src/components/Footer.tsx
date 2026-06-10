@@ -1,106 +1,142 @@
 import { Link } from "react-router-dom";
-import { Instagram, Facebook, Mail } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
+import { WHATSAPP_HREF } from "@/lib/contactLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-cream-dark border-t border-border">
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-          {/* Brand */}
+    <footer className="border-t border-muted-gold bg-walnut-shell text-warm-parchment">
+      <div className="mx-auto w-full max-w-[1200px] px-3 py-12 md:py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-12">
           <div className="md:col-span-2">
-            <Link to="/" className="inline-block">
-              <img src="/logo.svg" alt="Desire Comfort™" className="h-8 w-auto" width="136" height="32" />
+            <Link to="/" className="inline-block transition-opacity hover:opacity-80">
+              <BrandLogo variant="inverse" className="text-[1.5rem] md:text-[1.75rem]" />
             </Link>
-            <span className="mt-3 block text-sm tracking-[0.3em] font-medium text-foreground">
-              D E S I R E C O M F O R T™
-            </span>
-            <p className="mt-4 text-muted-foreground text-sm leading-relaxed max-w-md">
-              Empowering women with comfort and confidence, every day. 
-              Our leak-proof underwear is designed to give you peace of mind 
-              so you can focus on what matters most.
+            <p className="mt-4 max-w-md text-caption leading-relaxed text-warm-parchment/80">
+              Leak-proof period underwear designed for real bodies and real schedules. Soft fabrics,
+              secure layers, and sizing you can trust.
             </p>
-            <div className="flex gap-4 mt-6">
+            <div className="mt-6">
+              <a
+                href="mailto:info@desire-comfort.com"
+                className="inline-block border-b border-muted-gold pb-2 text-caption text-warm-parchment transition-colors hover:text-warm-parchment/80"
+              >
+                info@desire-comfort.com
+              </a>
+            </div>
+            <div className="mt-6 flex gap-6">
               <a
                 href="https://www.instagram.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-blush-light text-warm-brown transition-colors hover:bg-primary hover:text-primary-foreground"
-                aria-label="Instagram (opens in new tab)"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
               >
-                <Instagram className="h-5 w-5" />
+                Instagram
               </a>
               <a
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-blush-light text-warm-brown transition-colors hover:bg-primary hover:text-primary-foreground"
-                aria-label="Facebook (opens in new tab)"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
               >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="mailto:info@desire-comfort.com"
-                className="w-10 h-10 rounded-full bg-blush-light flex items-center justify-center text-warm-brown hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
+                Facebook
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg font-medium mb-4">Quick Links</h4>
+            <h4 className="mb-4 text-caption font-medium text-warm-parchment">Quick Links</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/#order" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <Link
+                to="/#order"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 {CTA_PRIMARY_LABEL}
               </Link>
-              <Link to="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/#how-it-works"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 How It Works
               </Link>
-              <Link to="/#reviews" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <Link
+                to="/#reviews"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 Reviews
               </Link>
-              <Link to="/#faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <Link
+                to="/#faq"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 FAQ
               </Link>
             </nav>
           </div>
 
-          {/* Support */}
           <div>
-            <h4 className="font-serif text-lg font-medium mb-4">Support</h4>
+            <h4 className="mb-4 text-caption font-medium text-warm-parchment">Support</h4>
             <nav className="flex flex-col gap-3">
-              <Link to="/shipping" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/shipping"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 Shipping Info
               </Link>
-              <Link to="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/refund"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 Returns
               </Link>
-              <Link to="/faq" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <Link
+                to="/faq"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 Size Guide
               </Link>
-              <Link to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/contact"
+                className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
                 Contact Us
               </Link>
+              <a
+                href={WHATSAPP_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-fit border-b border-muted-gold pb-0.5 text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+              >
+                WhatsApp
+              </a>
             </nav>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-muted-gold pt-8 md:flex-row">
+          <p className="text-caption text-warm-parchment/80">
             © {new Date().getFullYear()} Desire Comfort™. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/privacy"
+              className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+            >
               Privacy Policy
             </Link>
-            <Link to="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/refund"
+              className="text-caption text-warm-parchment/80 transition-colors hover:text-warm-parchment"
+            >
               Refund Policy
             </Link>
           </div>
+        </div>
+
+        <div className="-mx-3 mt-12 overflow-hidden">
+          <p className="pointer-events-none select-none whitespace-nowrap text-center text-[clamp(4rem,15vw,12rem)] font-medium leading-none tracking-tight text-warm-parchment/[0.03]">
+            DESIRE COMFORT
+          </p>
         </div>
       </div>
     </footer>

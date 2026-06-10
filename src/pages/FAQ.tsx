@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageContent from "@/components/layout/PageContent";
 import {
   Accordion,
   AccordionContent,
@@ -32,33 +33,29 @@ const FAQ = () => {
     const el = document.getElementById("page-content");
     if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
   }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex justify-center pb-28 pt-36 md:pb-32 md:pt-44">
-        <div
-          id="page-content"
-          className="container mx-auto w-full max-w-3xl scroll-mt-[var(--header-scroll-offset)] px-4 py-12 md:py-20"
-        >
-          <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
-            Frequently Asked Questions
-          </h1>
-          <p className="mt-4 text-base font-medium text-foreground/90 max-w-2xl">
+      <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+        <PageContent id="page-content" className="max-w-2xl">
+          <h1 className="text-heading font-medium text-foreground">Frequently asked questions</h1>
+          <p className="mt-4 text-body text-muted-foreground">
             Quick answers to common questions. Can&apos;t find what you need? Contact us.
           </p>
-          <Accordion type="single" collapsible className="mt-8 max-w-2xl">
+          <Accordion type="single" collapsible className="mt-10">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="text-left text-base font-semibold text-foreground">
+              <AccordionItem key={i} value={`item-${i}`} className="border-t-0">
+                <AccordionTrigger className="text-body font-medium text-foreground">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-base text-foreground/85">
+                <AccordionContent className="text-body text-muted-foreground">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </PageContent>
       </main>
       <Footer />
     </div>

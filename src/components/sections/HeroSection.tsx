@@ -1,74 +1,48 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, Shield } from "lucide-react";
-import heroImage from "@/assets/hero-lifestyle.jpg";
-import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
+import { HERO_IMAGE } from "@/lib/media";
+import { CTA_PRIMARY_LABEL, CTA_TRUST_LINE } from "@/lib/ctaCopy";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Woman relaxing comfortably"
-          className="h-full w-full object-cover object-center opacity-40"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-      </div>
+    <section className="relative h-svh min-h-svh w-full overflow-hidden">
+      <img
+        src={HERO_IMAGE}
+        alt="Woman relaxing comfortably"
+        className="absolute inset-0 z-0 h-full w-full object-cover object-[68%_42%] md:object-center"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
 
-      <div className="container mx-auto px-4 pt-20 pb-14 md:pt-28 md:pb-20 relative z-10 flex flex-col items-center text-center">
-        <div className="max-w-2xl">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blush-light/80 backdrop-blur-sm text-warm-brown text-sm font-medium mb-6 animate-fade-in-up">
-            <Shield className="w-4 h-4" />
-            Trusted by 50,000+ Women
-          </div>
+      {/* Frosted read zone — fixed to hero background, not the content block */}
+      <div
+        className="hero-read-panel pointer-events-none absolute bottom-0 left-0 z-[1] h-[min(72vh,680px)] w-full max-w-[100vw] md:h-[min(84vh,900px)] md:w-[min(68vw,920px)]"
+        aria-hidden
+      />
 
-          {/* Hero brand — logo + name */}
-          <div className="animate-fade-in-up animation-delay-100">
-            <img src="/logo.svg" alt="Desire Comfort™" className="h-12 md:h-14 w-auto mx-auto mb-4" />
-            <p className="text-lg sm:text-xl md:text-2xl font-medium font-serif text-foreground tracking-[0.2em] whitespace-nowrap">
-              DESIRE–COMFORT™
+      {/* Content — editorial gutter only */}
+      <div className="absolute inset-x-0 bottom-0 z-10">
+        <div className="mx-auto w-full max-w-[1200px] px-3 pb-6 md:pb-8">
+          <div className="max-w-2xl">
+            <h1 className="text-[clamp(2.25rem,6vw,2.75rem)] font-normal leading-[1.08] text-walnut-shell md:text-[clamp(2.75rem,4.2vw,3.5rem)]">
+              Stay dry, comfortable, and confident all day
+            </h1>
+            <p className="mt-4 text-body text-walnut-shell/85">
+              Leak-proof protection you can count on, breathable comfort that never feels bulky, and the
+              confidence to move through your day without worry.
             </p>
-          </div>
-
-          {/* Benefit headline */}
-          <h1 className="mt-4 font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight tracking-tight animate-fade-in-up animation-delay-200">
-            Stay Dry, Comfortable, and Confident All Day
-          </h1>
-
-          {/* Subtext — leak protection, comfort, confidence */}
-          <p className="text-hero-sub mt-4 max-w-xl mx-auto animate-fade-in-up animation-delay-300">
-            <span className="font-medium text-foreground/90">Leak-proof protection</span> you can count on,{" "}
-            <span className="font-medium text-foreground/90">breathable comfort</span> that never feels bulky, and the{" "}
-            <span className="font-medium text-foreground/90">confidence</span> to move through your day without worry.
-          </p>
-
-          {/* CTA */}
-          <div className="mt-4 animate-fade-in-up animation-delay-300">
-            <Button variant="hero" size="xl" className="min-h-12 px-8" asChild>
-              <Link to="/#order">
-                <ShoppingBag className="w-5 h-5" />
-                {CTA_PRIMARY_LABEL}
-              </Link>
+            <Button variant="solid" size="lg" className="mt-8" asChild>
+              <Link to="/#order">{CTA_PRIMARY_LABEL}</Link>
             </Button>
-            <p className="mt-3 text-xs font-medium text-muted-foreground">
-              Secure checkout · 30-day guarantee · Fast delivery
+            <p className="mt-3 text-caption text-obsidian/80 md:mt-6 md:text-obsidian/85">
+              {CTA_TRUST_LINE}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-pulse-soft">
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 rounded-full bg-muted-foreground/50" />
-        </div>
-      </div>
+      <div id="hero-sentinel" className="absolute bottom-0 z-10 h-px w-full" />
     </section>
   );
 };

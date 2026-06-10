@@ -1,34 +1,34 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Truck } from "lucide-react";
+import PageContent from "@/components/layout/PageContent";
 
-const Shipping = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pb-28 pt-24 md:pb-32 md:pt-28">
-        <div className="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
-          <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
-            Shipping & Delivery
-          </h1>
-          <div className="mt-8 flex items-start gap-4">
-            <Truck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-            <div className="text-muted-foreground leading-relaxed space-y-4">
-              <p>
-                <strong className="text-foreground">Free shipping worldwide.</strong> We ship
-                standard delivery in 5–7 business days. Express shipping may be available at checkout.
-              </p>
-              <p>
-                You'll receive a tracking link once your order ships. If you have questions,
-                contact us at Info@desire-comfort.com.
-              </p>
-            </div>
-          </div>
+const Shipping = () => (
+  <div className="min-h-screen bg-background">
+    <Header />
+    <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+      <PageContent className="max-w-2xl">
+        <h1 className="text-heading font-medium text-foreground">Shipping & delivery</h1>
+        <div className="mt-8 space-y-4 text-body text-muted-foreground">
+          <p>
+            <span className="font-medium text-foreground">Free shipping worldwide.</span> We ship
+            standard delivery in 5–7 business days. Express shipping may be available at checkout.
+          </p>
+          <p>
+            You&apos;ll receive a tracking link once your order ships. If you have questions,
+            contact us at{" "}
+            <a
+              href="mailto:info@desire-comfort.com"
+              className="border-b border-muted-gold text-foreground transition-opacity hover:opacity-80"
+            >
+              info@desire-comfort.com
+            </a>
+            .
+          </p>
         </div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+      </PageContent>
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Shipping;

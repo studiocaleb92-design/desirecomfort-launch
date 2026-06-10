@@ -16,7 +16,13 @@ dist-ssr
 .env.*.local
 
 # Cursor MCP config (may contain tokens)
-.cursor
+.cursor/*
+!.cursor/skills/
+!.cursor/skills/**
+!.cursor/agents/
+!.cursor/agents/**
+!.cursor/rules/
+!.cursor/rules/**
 
 # Editor directories and files
 .vscode/*

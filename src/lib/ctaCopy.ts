@@ -1,5 +1,11 @@
-/** Primary checkout CTA — keep in sync across header, hero, product blocks, and sticky bar */
-export const CTA_PRIMARY_LABEL = "Get Yours Now – 30% Off";
+/** Outlined button label — no urgency */
+export const CTA_PRIMARY_LABEL = "Shop now";
 
-/** Homepage closing section only */
-export const CTA_FINAL_SECTION_LABEL = "Shop Now – 30% Off";
+/** Sticky bar headline — factual product line */
+export const CTA_STICKY_HEADLINE = "4-layer leakproof panties";
+
+/** Offer as fact, not countdown */
+export const offerLine = (percent: number) => `${percent}% off`;
+
+/** Trust line reused under CTAs */
+export const CTA_TRUST_LINE = "Secure checkout · 30-day guarantee · Fast delivery";

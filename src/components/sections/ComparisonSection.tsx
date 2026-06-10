@@ -1,4 +1,5 @@
-import { Check, X } from "lucide-react";
+import EditorialSection from "@/components/layout/EditorialSection";
+
 const rows = [
   { label: "Reusable", us: true, pads: false },
   { label: "No bulk", us: true, pads: false },
@@ -6,42 +7,38 @@ const rows = [
   { label: "Comfort", us: true, pads: false },
 ];
 
-const ComparisonSection = () => {
-  return (
-    <section className="section-padding bg-cream-dark">
-      <div className="container mx-auto max-w-3xl">
-        <div className="mb-10 text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Why switch</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">Desire Comfort™ vs Pads / Diapers</h2>
-          <p className="mt-3 text-base font-medium text-foreground/85">
-            Same leak security with a slimmer profile — without the plastic feel or constant adjusting.
-          </p>
-        </div>
-        <div className="overflow-hidden rounded-2xl border border-border/50 bg-card shadow-soft">
-          <div className="grid grid-cols-[1fr_auto_auto] gap-2 border-b border-border bg-muted/40 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:px-6 sm:text-sm">
-            <span> </span>
-            <span className="text-center text-primary">Desire Comfort™</span>
-            <span className="text-center">Pads / diapers</span>
-          </div>
-          {rows.map((row) => (
-            <div
-              key={row.label}
-              className="grid grid-cols-[1fr_auto_auto] items-center gap-2 border-b border-border/60 px-4 py-3 last:border-0 sm:px-6 sm:py-4"
-            >
-              <span className="text-sm font-medium text-foreground sm:text-base">{row.label}</span>
-              <span className="flex justify-center">
-                {row.us ? <Check className="h-5 w-5 text-success" aria-label="Yes" /> : <X className="h-5 w-5 text-muted-foreground" aria-label="No" />}
-              </span>
-              <span className="flex justify-center">
-                {row.pads ? <Check className="h-5 w-5 text-muted-foreground" aria-label="Yes" /> : <X className="h-5 w-5 text-muted-foreground/70" aria-label="No" />}
-              </span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-center text-xs text-muted-foreground">Pads and disposable diapers offer only limited leak control and less comfort.</p>
+const ComparisonSection = () => (
+  <EditorialSection surface="parchment">
+    <div className="max-w-2xl">
+      <h2 className="text-heading font-medium text-foreground">Desire Comfort™ vs pads / diapers</h2>
+      <p className="mt-3 text-body text-muted-foreground">
+        Same leak security with a slimmer profile — without the plastic feel or constant adjusting.
+      </p>
+    </div>
+
+    <div className="mt-10 max-w-2xl">
+      <div className="grid grid-cols-[1fr_auto_auto] gap-4 border-b border-obsidian/10 pb-3 text-caption font-medium text-muted-foreground">
+        <span />
+        <span className="text-foreground">Desire Comfort™</span>
+        <span>Pads / diapers</span>
       </div>
-    </section>
-  );
-};
+      {rows.map((row) => (
+        <div
+          key={row.label}
+          className="grid grid-cols-[1fr_auto_auto] items-center gap-4 border-b border-obsidian/10 py-4"
+        >
+          <span className="text-body text-foreground">{row.label}</span>
+          <span className="min-w-16 text-center text-body text-foreground">{row.us ? "Yes" : "—"}</span>
+          <span className="min-w-16 text-center text-body text-muted-foreground">
+            {row.pads ? "Yes" : "—"}
+          </span>
+        </div>
+      ))}
+      <p className="mt-4 text-caption text-muted-foreground">
+        Pads and disposable diapers offer only limited leak control and less comfort.
+      </p>
+    </div>
+  </EditorialSection>
+);
 
 export default ComparisonSection;

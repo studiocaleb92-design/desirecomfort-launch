@@ -1,24 +1,28 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageContent from "@/components/layout/PageContent";
 
-const Privacy = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pb-28 pt-24 md:pb-32 md:pt-28">
-        <div className="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
-          <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
-            Privacy Policy
-          </h1>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
-            We respect your privacy. This page will be updated with our full privacy policy.
-            For questions, contact us at Info@desire-comfort.com.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Privacy = () => (
+  <div className="min-h-screen bg-background">
+    <Header />
+    <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+      <PageContent className="max-w-2xl">
+        <h1 className="text-heading font-medium text-foreground">Privacy policy</h1>
+        <p className="mt-6 text-body text-muted-foreground">
+          We respect your privacy. This page will be updated with our full privacy policy. For
+          questions, contact us at{" "}
+          <a
+            href="mailto:info@desire-comfort.com"
+            className="border-b border-muted-gold text-foreground transition-opacity hover:opacity-80"
+          >
+            info@desire-comfort.com
+          </a>
+          .
+        </p>
+      </PageContent>
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Privacy;

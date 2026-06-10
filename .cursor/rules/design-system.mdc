@@ -1,0 +1,19 @@
+---
+description: Reminds agents of Desire Comfort design system constraints for UI files
+globs: "**/*.{tsx,css}"
+alwaysApply: false
+---
+
+# Desire Comfort Design System
+
+Full guide: `.cursor/skills/desirecomfort-design/SKILL.md` and `doc/design system/DESIGN.md`
+
+## Top 5 Rules
+
+1. **No shadows** — flat surfaces only; depth from color contrast and photography
+2. **Outlined buttons** — transparent fill, 1px border, 8px radius; no filled CTAs
+3. **ModernEra only** — sole typeface; weights 400/500; max 40px display size
+4. **Use token vars** — `warm-parchment`, `walnut-shell`, `obsidian`, etc.; no hardcoded hex in JSX
+5. **Sharp images** — `rounded-none` on images/cards; 8px radius on buttons/links only
+
+Invoke `/desirecomfort-design` for full design system work or rebrand migration.

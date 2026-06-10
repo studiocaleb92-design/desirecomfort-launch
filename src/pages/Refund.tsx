@@ -1,25 +1,22 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageContent from "@/components/layout/PageContent";
 
-const Refund = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pb-28 pt-24 md:pb-32 md:pt-28">
-        <div className="container mx-auto px-4 py-12 md:py-20 max-w-3xl">
-          <h1 className="font-serif text-3xl md:text-4xl font-medium text-foreground">
-            Refund Policy
-          </h1>
-          <p className="mt-6 text-muted-foreground leading-relaxed">
-            We offer a 30-day comfort guarantee. If you're not satisfied, contact us for a refund
-            or exchange. Items must be unworn and in original packaging. Full refund policy details
-            will be published here.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
-};
+const Refund = () => (
+  <div className="min-h-screen bg-background">
+    <Header />
+    <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+      <PageContent className="max-w-2xl">
+        <h1 className="text-heading font-medium text-foreground">Refund policy</h1>
+        <p className="mt-6 text-body text-muted-foreground">
+          We offer a 30-day comfort guarantee. If you&apos;re not satisfied, contact us for a refund
+          or exchange. Items must be unworn and in original packaging. Full refund policy details
+          will be published here.
+        </p>
+      </PageContent>
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Refund;

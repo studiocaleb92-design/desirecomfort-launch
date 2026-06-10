@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Link } from "react-router-dom";
+import { Sheet, SheetClose, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
-import { Minus, Plus, Trash2, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Minus, Plus, Trash2, Loader2, X } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "";
 
@@ -13,57 +15,81 @@ const CartDrawer = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
-      <SheetContent side="right" className="flex flex-col w-full sm:max-w-md">
-        <SheetHeader>
-          <SheetTitle>Your cart</SheetTitle>
-        </SheetHeader>
+      <SheetContent
+        side="right"
+        hideClose
+        className="flex w-full flex-col border-obsidian/10 sm:max-w-md"
+      >
+        <div className="flex items-center justify-between border-b border-obsidian/10 pb-4">
+          <SheetTitle className="text-left">Your cart</SheetTitle>
+          <SheetClose className="opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-amber-glow focus:ring-offset-2">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </SheetClose>
+        </div>
         <div className="flex-1 overflow-y-auto py-4">
           {items.length === 0 ? (
-            <p className="text-muted-foreground text-sm">Your cart is empty.</p>
+            <div>
+              <p className="text-sm text-muted-foreground">Your cart is empty.</p>
+              <Link
+                to="/#order"
+                onClick={closeCart}
+                className="mt-4 inline-block border-b border-obsidian pb-1 text-sm text-foreground transition-opacity hover:opacity-80"
+              >
+                Shop now
+              </Link>
+            </div>
           ) : (
             <ul className="space-y-4">
-              {items.map((item) => (
-                <li key={item.id} className="flex gap-3 border-b border-border pb-4">
+              {items.map((item, index) => (
+                <li
+                  key={item.id}
+                  className={cn(
+                    "flex gap-3 border-b border-obsidian/10 pb-4 reveal-hidden",
+                    isOpen && "reveal-visible reveal-stagger",
+                  )}
+                  style={{ "--stagger-index": index * 0.67 } as React.CSSProperties}
+                >
                   {item.image && (
                     <img
                       src={item.image}
                       alt=""
-                      className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                      className="h-16 w-16 flex-shrink-0 rounded-none object-cover"
                     />
                   )}
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm text-foreground truncate">{item.title}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-foreground">{item.title}</p>
                     <p className="text-xs text-muted-foreground">
                       {item.color} / {item.size} / {item.packLabel}
                     </p>
-                    <p className="text-sm font-medium text-foreground mt-1">
+                    <p className="mt-1 text-sm font-medium text-foreground">
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
-                    <div className="flex items-center gap-2 mt-2">
+                    <div className="mt-2 flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-muted"
+                        className="flex h-8 w-8 items-center justify-center border border-obsidian bg-transparent transition-colors hover:bg-candlelight"
                         aria-label="Decrease quantity"
                       >
-                        <Minus className="w-3 h-3" />
+                        <Minus className="h-3 w-3" />
                       </button>
                       <span className="w-8 text-center text-sm">{item.quantity}</span>
                       <button
                         type="button"
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded border border-border flex items-center justify-center hover:bg-muted"
+                        className="flex h-8 w-8 items-center justify-center border border-obsidian bg-transparent transition-colors hover:bg-candlelight"
                         aria-label="Increase quantity"
                       >
-                        <Plus className="w-3 h-3" />
+                        <Plus className="h-3 w-3" />
                       </button>
                       <button
                         type="button"
                         onClick={() => removeItem(item.id)}
-                        className="ml-2 text-muted-foreground hover:text-destructive"
+                        className="ml-2 text-muted-foreground transition-opacity hover:opacity-70"
                         aria-label="Remove item"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
                   </div>
@@ -73,17 +99,17 @@ const CartDrawer = () => {
           )}
         </div>
         {items.length > 0 && (
-          <div className="border-t border-border pt-4 space-y-4">
+          <div className="space-y-4 border-t border-obsidian/10 pt-4">
             <div className="flex justify-between text-sm">
-              <span className="text-muted-foreground">SUBTOTAL</span>
+              <span className="text-muted-foreground">Subtotal</span>
               <span className="font-medium">${subtotal.toFixed(2)}</span>
             </div>
             {checkoutError && (
-              <p className="text-sm text-destructive font-medium">{checkoutError}</p>
+              <p className="text-sm font-medium text-destructive">{checkoutError}</p>
             )}
             <Button
               variant="hero"
-              className="w-full"
+              className={cn("w-full", checkoutLoading && "opacity-70")}
               size="lg"
               disabled={checkoutLoading}
               onClick={async () => {
@@ -105,7 +131,9 @@ const CartDrawer = () => {
                   try {
                     data = text ? JSON.parse(text) : {};
                   } catch {
-                    setCheckoutError("Checkout is temporarily unavailable. Please try again or contact us.");
+                    setCheckoutError(
+                      "Checkout is temporarily unavailable. Please try again or contact us.",
+                    );
                     return;
                   }
                   if (!res.ok) throw new Error(data.error || "Checkout failed");
@@ -124,7 +152,7 @@ const CartDrawer = () => {
             >
               {checkoutLoading ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <Loader2 className="h-4 w-4 animate-spin" />
                   Redirecting…
                 </>
               ) : (

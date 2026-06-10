@@ -1,46 +1,56 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, HeartHandshake, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import EditorialSection from "@/components/layout/EditorialSection";
 import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 
-export const HomeAboutSection = () => (
-  <section id="about" className={`section-padding bg-background ${HEADER_SCROLL_ANCHOR_CLASS}`}>
-    <div className="container mx-auto max-w-3xl text-center">
-      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blush-light">
-        <HeartHandshake className="h-6 w-6 text-primary" aria-hidden />
+const HomeAboutContactSection = () => (
+  <EditorialSection
+    surface="candlelight"
+    reveal
+    className={HEADER_SCROLL_ANCHOR_CLASS}
+  >
+    <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-16">
+      <div>
+        <h2 className="text-heading font-medium text-foreground">About us</h2>
+        <p className="mt-4 text-body text-foreground">
+          Desire Comfort™ exists to give you leak confidence without sacrificing how you want to
+          look and feel. We design period underwear with real bodies and real schedules in mind —
+          soft fabrics, secure layers, and honest sizing.
+        </p>
+        <p className="mt-6">
+          <Link
+            to="/about"
+            className="inline-block border-b border-obsidian pb-2 text-body text-obsidian transition-opacity hover:opacity-80"
+          >
+            Our story
+          </Link>
+        </p>
       </div>
-      <h2 className="font-serif text-3xl font-medium text-foreground md:text-4xl">About us</h2>
-      <p className="mt-4 text-base font-medium leading-relaxed text-foreground/90">
-        Desire Comfort™ exists to give you leak confidence without sacrificing how you want to look and feel. We design
-        period underwear with real bodies and real schedules in mind — soft fabrics, secure layers, and honest sizing.
-      </p>
-      <Button variant="outline" className="mt-8" asChild>
-        <Link to="/about">
-          Our story <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
+
+      <div id="contact">
+        <h2 className="text-heading font-medium text-foreground">Contact us</h2>
+        <p className="mt-4 text-body text-foreground">
+          Questions about sizing, shipping, or your order? Our team replies as quickly as we can on
+          business days.
+        </p>
+        <p className="mt-6">
+          <a
+            href="mailto:info@desire-comfort.com"
+            className="inline-block border-b border-muted-gold pb-2 text-body text-foreground transition-opacity hover:opacity-80"
+          >
+            info@desire-comfort.com
+          </a>
+        </p>
+        <p className="mt-6">
+          <Link
+            to="/contact"
+            className="inline-block border-b border-obsidian pb-2 text-body text-obsidian transition-opacity hover:opacity-80"
+          >
+            Go to contact form
+          </Link>
+        </p>
+      </div>
     </div>
-  </section>
+  </EditorialSection>
 );
 
-export const HomeContactSection = () => (
-  <section id="contact" className={`section-padding bg-cream-dark ${HEADER_SCROLL_ANCHOR_CLASS}`}>
-    <div className="container mx-auto max-w-3xl text-center">
-      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-background shadow-soft">
-        <Mail className="h-6 w-6 text-primary" aria-hidden />
-      </div>
-      <h2 className="font-serif text-3xl font-medium text-foreground md:text-4xl">Contact us</h2>
-      <p className="mt-4 text-base font-medium leading-relaxed text-foreground/90">
-        Questions about sizing, shipping, or your order? Our team replies as quickly as we can on business days.
-      </p>
-      <p className="mt-4">
-        <a href="mailto:info@desire-comfort.com" className="text-lg font-semibold text-primary hover:underline">
-          info@desire-comfort.com
-        </a>
-      </p>
-      <Button variant="hero" className="mt-8" asChild>
-        <Link to="/contact">Go to contact form</Link>
-      </Button>
-    </div>
-  </section>
-);
+export default HomeAboutContactSection;

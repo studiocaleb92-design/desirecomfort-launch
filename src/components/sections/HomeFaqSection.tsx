@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import EditorialSection from "@/components/layout/EditorialSection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 
@@ -9,7 +10,7 @@ const faqs = [
   },
   {
     q: "How much fluid do they hold?",
-    a: "Our 4-layer system is designed for everyday to heavy flow — up to about 4 tampons’ worth (40ml) for many wearers, depending on flow and fit.",
+    a: "Our 4-layer system is designed for everyday to heavy flow — up to about 4 tampons' worth (40ml) for many wearers, depending on flow and fit.",
   },
   {
     q: "How do I wash them?",
@@ -17,39 +18,46 @@ const faqs = [
   },
   {
     q: "What is your return policy?",
-    a: "30-day fit guarantee on unworn pairs in original packaging. Reach out and we’ll make it right — exchanges or returns handled simply.",
+    a: "30-day fit guarantee on unworn pairs in original packaging. Reach out and we'll make it right — exchanges or returns handled simply.",
   },
 ];
 
-const HomeFaqSection = () => {
-  return (
-    <section id="faq" className={`section-padding bg-cream-dark ${HEADER_SCROLL_ANCHOR_CLASS}`}>
-      <div className="container mx-auto max-w-2xl">
-        <div className="mb-10 text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider text-primary">Questions</span>
-          <h2 className="mt-3 font-serif text-3xl font-medium text-foreground md:text-4xl">FAQ</h2>
-          <p className="mt-3 text-base font-medium text-foreground/85">Quick answers — tap to expand.</p>
-        </div>
-        <Accordion type="single" collapsible className="rounded-xl border border-border/50 bg-card px-2 shadow-soft md:px-4">
-          {faqs.map((item, i) => (
-            <AccordionItem key={item.q} value={`faq-${i}`} className="border-border/60 px-2">
-              <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-sm font-medium leading-relaxed text-foreground/85 md:text-base">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          <Link to="/faq" className="font-medium text-primary hover:underline">
-            View full FAQ
-          </Link>
-        </p>
-      </div>
-    </section>
-  );
-};
+const HomeFaqSection = () => (
+  <EditorialSection
+    id="faq"
+    surface="parchment"
+    reveal
+    className={HEADER_SCROLL_ANCHOR_CLASS}
+    innerClassName="max-w-2xl"
+  >
+    <h2 className="text-heading font-medium text-foreground">FAQ</h2>
+
+    <Accordion type="single" collapsible className="mt-10">
+      {faqs.map((item, i) => (
+        <AccordionItem
+          key={item.q}
+          value={`faq-${i}`}
+          className="border-b border-obsidian/10 border-t-0"
+        >
+          <AccordionTrigger className="py-5 text-left text-body font-medium text-foreground hover:no-underline">
+            {item.q}
+          </AccordionTrigger>
+          <AccordionContent className="pb-5 text-body text-muted-foreground">
+            {item.a}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+
+    <p className="mt-8">
+      <Link
+        to="/faq"
+        className="inline-block border-b border-obsidian pb-2 text-body text-obsidian transition-opacity hover:opacity-80"
+      >
+        View full FAQ
+      </Link>
+    </p>
+  </EditorialSection>
+);
 
 export default HomeFaqSection;
