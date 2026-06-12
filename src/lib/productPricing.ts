@@ -3,7 +3,7 @@ import { getCompareAtPrice, getSavings, roundToTwoDecimals } from "@/lib/utils";
 /** Sitewide sale discount — compare-at is derived so UI always shows this percentage off. */
 export const SITE_DISCOUNT_PERCENT = 30 as const;
 
-export const BUNDLE_QTYS = [10, 15, 20] as const;
+export const BUNDLE_QTYS = [5, 10, 15, 20] as const;
 export type BundleQty = (typeof BUNDLE_QTYS)[number];
 
 export type BundleOption = {
@@ -15,6 +15,7 @@ export type BundleOption = {
 };
 
 export const BUNDLE_OPTIONS: BundleOption[] = [
+  { qty: 5, label: "5 Pack", valueLabel: "Starter pack" },
   { qty: 10, label: "10 Pack", valueLabel: "Great value" },
   { qty: 15, label: "15 Pack", valueLabel: "Better value" },
   { qty: 20, label: "20 Pack", valueLabel: "Best value", highlight: true },
@@ -22,6 +23,7 @@ export const BUNDLE_OPTIONS: BundleOption[] = [
 
 /** Per-pair sale price (USD) for each pack tier — 20-pack is best per-unit value. */
 const UNIT_SALE_BY_QTY: Record<BundleQty, number> = {
+  5: 14.99,
   10: 13.99,
   15: 12.99,
   20: 11.99,
