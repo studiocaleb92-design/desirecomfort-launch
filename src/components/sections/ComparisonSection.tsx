@@ -8,7 +8,7 @@ const rows = [
 ];
 
 const ComparisonSection = () => (
-  <EditorialSection surface="parchment">
+  <EditorialSection surface="soft-blush">
     <div className="max-w-2xl">
       <h2 className="text-heading font-medium text-foreground">Desire Comfort™ vs pads / diapers</h2>
       <p className="mt-3 text-body text-muted-foreground">

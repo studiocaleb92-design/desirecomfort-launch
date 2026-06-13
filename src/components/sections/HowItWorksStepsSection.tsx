@@ -28,7 +28,7 @@ const HowItWorksStepsSection = () => {
   return (
     <EditorialSection
       id="how-it-works"
-      surface="parchment"
+      surface="soft-blush"
       reveal
       className={HEADER_SCROLL_ANCHOR_CLASS}
     >

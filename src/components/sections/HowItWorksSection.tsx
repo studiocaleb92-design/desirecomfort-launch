@@ -30,7 +30,7 @@ const trustBadges = [
 
 const HowItWorksSection = () => (
   <>
-    <EditorialSection surface="parchment">
+    <EditorialSection surface="soft-blush">
       <div className="max-w-2xl">
         <h1 className="text-heading font-medium text-foreground">Technology & protection</h1>
         <p className="mt-4 text-body text-muted-foreground">

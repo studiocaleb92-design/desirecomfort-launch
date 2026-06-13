@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-type EditorialSurface = "parchment" | "candlelight";
+type EditorialSurface = "parchment" | "candlelight" | "soft-blush";
 
 interface EditorialSectionProps {
   id?: string;
@@ -16,6 +16,7 @@ interface EditorialSectionProps {
 const surfaceClass: Record<EditorialSurface, string> = {
   parchment: "bg-background",
   candlelight: "bg-candlelight",
+  "soft-blush": "bg-soft-blush",
 };
 
 const EditorialSection = ({

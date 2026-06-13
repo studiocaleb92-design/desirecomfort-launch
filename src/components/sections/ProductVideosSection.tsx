@@ -43,7 +43,7 @@ const ProductVideosSection = ({ wrapped = true, id = "product-videos" }: Product
   }
 
   return (
-    <EditorialSection surface="parchment">
+    <EditorialSection surface="soft-blush">
       {content}
     </EditorialSection>
   );

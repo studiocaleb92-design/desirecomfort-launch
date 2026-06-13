@@ -25,7 +25,7 @@ const faqs = [
 const HomeFaqSection = () => (
   <EditorialSection
     id="faq"
-    surface="parchment"
+    surface="soft-blush"
     reveal
     className={HEADER_SCROLL_ANCHOR_CLASS}
     innerClassName="max-w-2xl"

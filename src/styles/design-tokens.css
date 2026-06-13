@@ -17,7 +17,8 @@
 :root {
   /* Colors */
   --color-warm-parchment: #ffebd0;
-  --color-candlelight: #fff8e9;
+  --color-candlelight: #f4c2c2;
+  --color-soft-blush: #ffe4e1;
   --color-obsidian: #000000;
   --color-walnut-shell: #2f2116;
   --color-aged-bronze: #4f3622;
@@ -76,6 +77,7 @@
 
   /* Surfaces */
   --surface-walnut-shell: #2f2116;
-  --surface-warm-parchment: #ffebd0;
-  --surface-candlelight: #fff8e9;
+  --surface-warm-parchment: var(--color-soft-blush);
+  --surface-candlelight: #f4c2c2;
+  --surface-soft-blush: #ffe4e1;
 }

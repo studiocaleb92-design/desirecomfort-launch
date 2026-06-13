@@ -79,7 +79,7 @@ const EditorialGallerySection = () => {
   const { containerRef, isVisible } = useStaggerReveal();
 
   return (
-    <EditorialSection surface="parchment" reveal>
+    <EditorialSection surface="soft-blush" reveal>
       <h2 className="text-heading font-medium text-foreground">See the difference</h2>
       <p className="mt-3 max-w-xl text-body text-muted-foreground">
         Different angles and styles of our 4-layer leakproof panties.

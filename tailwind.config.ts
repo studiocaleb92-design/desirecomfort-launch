@@ -69,6 +69,7 @@ export default {
         },
         "warm-parchment": "var(--color-warm-parchment)",
         candlelight: "var(--color-candlelight)",
+        "soft-blush": "var(--color-soft-blush)",
         obsidian: "var(--color-obsidian)",
         "walnut-shell": "var(--color-walnut-shell)",
         "aged-bronze": "var(--color-aged-bronze)",

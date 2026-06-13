@@ -15,7 +15,7 @@
     --header-scroll-offset: 4.5rem;
 
     /* shadcn semantic bridge → design tokens */
-    --background: var(--surface-warm-parchment);
+    --background: var(--surface-soft-blush);
     --foreground: var(--color-obsidian);
 
     --card: var(--surface-candlelight);
@@ -52,7 +52,7 @@
     --font-sans: var(--font-modernera);
 
     /* Sidebar (shadcn compatibility) */
-    --sidebar-background: var(--surface-warm-parchment);
+    --sidebar-background: var(--surface-soft-blush);
     --sidebar-foreground: var(--color-obsidian);
     --sidebar-primary: var(--color-obsidian);
     --sidebar-primary-foreground: var(--color-warm-parchment);
