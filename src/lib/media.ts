@@ -36,3 +36,6 @@ export const PRODUCT_VIDEO_FILES: { filename: string; title: string }[] = [
 ];
 
 export const videoSrc = (filename: string) => `/videos/${encodeURIComponent(filename)}`;
+
+export const HERO_VIDEO_FILENAME = "herovideo.mp4";
+export const HERO_VIDEO_SRC = videoSrc(HERO_VIDEO_FILENAME);
