@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import EditorialSection from "@/components/layout/EditorialSection";
+import { BRAND_NAME } from "@/lib/brand";
 import { BRAND_STATEMENT_IMAGE, PRODUCT_HERO_FALLBACK } from "@/lib/media";
 import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 
@@ -44,7 +45,7 @@ const BrandStatementSection = () => (
 
       <div>
         <p className="text-body text-foreground">
-          Desire Comfort™ leak-proof underwear combines invisible protection with all-day comfort.
+          {BRAND_NAME} leak-proof underwear combines invisible protection with all-day comfort.
           No bulk. No bunching. Just confidence you can feel.
         </p>
         <ul className="mt-6 space-y-2 text-body text-foreground">
@@ -55,7 +56,7 @@ const BrandStatementSection = () => (
         <div className="mt-10">
           <img
             src={BRAND_STATEMENT_IMAGE}
-            alt="Desire Comfort™ period underwear"
+            alt={`${BRAND_NAME} period underwear`}
             onError={(e) => {
               e.currentTarget.src = PRODUCT_HERO_FALLBACK;
             }}

@@ -5,11 +5,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/context/CartContext";
 import { ProductOfferProvider } from "@/context/ProductOfferContext";
-import CartDrawer from "@/components/CartDrawer";
 import StickyCtaBar from "@/components/StickyCtaBar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
 import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
@@ -31,12 +31,12 @@ const App = () => (
       <BrowserRouter>
         <CartProvider>
           <ProductOfferProvider>
-            <CartDrawer />
             <StickyCtaBar />
             <WhatsAppFloat />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/product" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />

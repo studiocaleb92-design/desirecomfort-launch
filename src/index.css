@@ -11,8 +11,10 @@
 
 @layer base {
   :root {
-    /* App-specific */
-    --header-scroll-offset: 4.5rem;
+    /* App-specific — header bar + optional top offer strip (set by StickyCtaBar) */
+    --header-bar-height: 4rem;
+    --sticky-cta-offset: 0px;
+    --header-scroll-offset: calc(var(--header-bar-height) + var(--sticky-cta-offset));
 
     /* shadcn semantic bridge → design tokens */
     --background: var(--surface-soft-blush);
@@ -64,7 +66,7 @@
 
   @media (min-width: 768px) {
     :root {
-      --header-scroll-offset: 4.5rem;
+      --header-bar-height: 4.5rem;
     }
   }
 
@@ -155,14 +157,16 @@
     @apply inline-flex items-center gap-2 px-4 py-2 rounded-button border border-obsidian text-obsidian text-sm font-normal;
   }
 
-  .page-bottom-safe {
-    padding-bottom: max(7rem, calc(var(--sticky-cta-offset, 0px) + 1rem));
+  .page-top-offset {
+    padding-top: var(--header-scroll-offset);
   }
 
-  @media (min-width: 768px) {
-    .page-bottom-safe {
-      padding-bottom: max(8rem, calc(var(--sticky-cta-offset, 0px) + 1rem));
-    }
+  .page-bottom-safe {
+    padding-bottom: 5rem;
+  }
+
+  .footer-bottom-safe {
+    padding-bottom: 1rem;
   }
 }
 

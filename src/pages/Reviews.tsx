@@ -6,7 +6,7 @@ const Reviews = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+      <main className="page-top-offset pb-28 md:pb-32">
         <SocialProofSection />
       </main>
       <Footer />

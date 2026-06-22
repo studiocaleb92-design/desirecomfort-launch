@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import BrandLogo from "@/components/BrandLogo";
+import { BRAND_NAME } from "@/lib/brand";
 import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
 import { WHATSAPP_HREF } from "@/lib/contactLinks";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-muted-gold bg-walnut-shell text-warm-parchment">
+    <footer className="footer-bottom-safe border-t border-muted-gold bg-walnut-shell text-warm-parchment">
       <div className="mx-auto w-full max-w-[1200px] px-3 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-12">
           <div className="md:col-span-2">
@@ -115,7 +116,7 @@ const Footer = () => {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-muted-gold pt-8 md:flex-row">
           <p className="text-caption text-warm-parchment/80">
-            © {new Date().getFullYear()} Desire Comfort™. All rights reserved.
+            © {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link
@@ -131,12 +132,6 @@ const Footer = () => {
               Refund Policy
             </Link>
           </div>
-        </div>
-
-        <div className="-mx-3 mt-12 overflow-hidden">
-          <p className="pointer-events-none select-none whitespace-nowrap text-center text-[clamp(4rem,15vw,12rem)] font-medium leading-none tracking-tight text-warm-parchment/[0.03]">
-            DESIRE COMFORT
-          </p>
         </div>
       </div>
     </footer>

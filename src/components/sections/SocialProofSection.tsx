@@ -1,5 +1,6 @@
 import EditorialSection from "@/components/layout/EditorialSection";
 import { useStaggerReveal, staggerChildProps } from "@/hooks/useStaggerReveal";
+import { BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 
@@ -12,7 +13,7 @@ const testimonials = [
   {
     name: "Jessica T.",
     location: "Abuja",
-    text: "Finally, underwear that actually works. I've tried other brands but Desire Comfort™ is on another level. So comfortable and the protection is incredible.",
+    text: `Finally, underwear that actually works. I've tried other brands but ${BRAND_NAME} is on another level. So comfortable and the protection is incredible.`,
   },
   {
     name: "Michelle K.",

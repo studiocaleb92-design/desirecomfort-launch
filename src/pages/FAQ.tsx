@@ -37,7 +37,7 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+      <main className="page-top-offset pb-28 md:pb-32">
         <PageContent id="page-content" className="max-w-2xl">
           <h1 className="text-heading font-medium text-foreground">Frequently asked questions</h1>
           <p className="mt-4 text-body text-muted-foreground">

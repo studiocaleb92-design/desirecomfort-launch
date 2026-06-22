@@ -11,8 +11,7 @@ const WhatsAppFloat = () => {
   return (
     <div
       className={cn(
-        "pointer-events-none fixed inset-x-0 z-30",
-        "bottom-[calc(var(--sticky-cta-offset,0px)+0.75rem+env(safe-area-inset-bottom,0px))]",
+        "pointer-events-none fixed inset-x-0 bottom-3 z-30 pb-[env(safe-area-inset-bottom,0px)]",
       )}
     >
       <div className="mx-auto flex w-full max-w-[1200px] justify-end px-3">

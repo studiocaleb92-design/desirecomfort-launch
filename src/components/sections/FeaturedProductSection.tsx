@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import EditorialSection from "@/components/layout/EditorialSection";
 import { CTA_PRIMARY_LABEL, CTA_TRUST_LINE, offerLine } from "@/lib/ctaCopy";
+import { BRAND_NAME } from "@/lib/brand";
 import { PRODUCT_HERO_FALLBACK } from "@/lib/media";
 import { useCart } from "@/context/CartContext";
 import { useProductOffer } from "@/context/ProductOfferContext";
 import { BUNDLE_OPTIONS, SITE_DISCOUNT_PERCENT } from "@/lib/productPricing";
+import {
+  colorSwatchClass,
+  colorSwatchLabelClass,
+  colorSwatchToggleClass,
+  packSizeToggleClass,
+} from "@/lib/productSelectorStyles";
 import {
   COLOR_QUERY_PARAM,
   HEADER_SCROLL_ANCHOR_CLASS,
@@ -25,19 +32,14 @@ const foldedBullets = [
   "Leak-proof, breathable, and washable for daily wear",
 ];
 
-const toggleClass = (active: boolean) =>
-  cn(
-    "min-h-11 border border-obsidian bg-transparent px-4 py-2 text-sm font-medium text-obsidian transition-colors",
-    active && "border-b-2 border-b-amber-glow"
-  );
-
 const FeaturedProductSection = () => {
   const { search } = useLocation();
   const colors = PRODUCT_COLORS.filter((c) => PRIMARY_IMAGE_BY_COLOR[c.name]);
   const [selectedColor, setSelectedColor] = useState(colors[0]?.name ?? "Blush Pink");
   const [selectedSize, setSelectedSize] = useState<(typeof PRODUCT_SIZES)[number]>("M");
   const { bundleQty, setBundleQty, totals } = useProductOffer();
-  const { addItem, openCart } = useCart();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const color = new URLSearchParams(search).get(COLOR_QUERY_PARAM);
@@ -68,7 +70,7 @@ const FeaturedProductSection = () => {
           <img
             key={selectedColor}
             src={featuredImage}
-            alt={`Desire Comfort™ 4-Layer Leakproof Panties — ${selectedColor}`}
+            alt={`${BRAND_NAME} 4-Layer Leakproof Panties — ${selectedColor}`}
             className="h-full w-full rounded-none object-cover"
             loading="lazy"
             decoding="async"
@@ -110,7 +112,7 @@ const FeaturedProductSection = () => {
                   key={qty}
                   type="button"
                   onClick={() => setBundleQty(qty)}
-                  className={toggleClass(bundleQty === qty)}
+                  className={packSizeToggleClass(bundleQty === qty)}
                 >
                   <span className="block">{label}</span>
                   <span className="mt-0.5 block text-caption text-muted-foreground">{valueLabel}</span>
@@ -127,14 +129,11 @@ const FeaturedProductSection = () => {
                   key={color.name}
                   type="button"
                   onClick={() => setSelectedColor(color.name)}
-                  className={cn(
-                    "flex flex-col items-center gap-1.5 border border-transparent px-2 py-1 transition-opacity hover:opacity-80",
-                    selectedColor === color.name && "border-b border-b-amber-glow"
-                  )}
+                  className={colorSwatchToggleClass(selectedColor === color.name)}
                   aria-label={color.name}
                 >
-                  <span className={`block h-8 w-8 rounded-none ${color.swatchClass}`} />
-                  <span className="text-caption text-foreground">{color.name}</span>
+                  <span className={colorSwatchClass(color.swatchClass, selectedColor === color.name)} />
+                  <span className={colorSwatchLabelClass(selectedColor === color.name)}>{color.name}</span>
                 </button>
               ))}
             </div>
@@ -148,7 +147,7 @@ const FeaturedProductSection = () => {
                   key={size}
                   type="button"
                   onClick={() => setSelectedSize(size)}
-                  className={cn(toggleClass(selectedSize === size), "min-w-12")}
+                  className={cn(packSizeToggleClass(selectedSize === size), "min-w-12")}
                 >
                   {size}
                 </button>
@@ -170,7 +169,7 @@ const FeaturedProductSection = () => {
                 packLabel,
                 image: featuredImage,
               });
-              openCart();
+              navigate("/cart");
             }}
           >
             {CTA_PRIMARY_LABEL}

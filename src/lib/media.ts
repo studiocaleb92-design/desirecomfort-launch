@@ -27,6 +27,7 @@ export const IMAGES = {
   creamBriefs: "/images/everdries-cream-briefs.jpg",
   blackBriefs: "/images/everdries-black-briefs.jpg",
   blueLifestyle: "/images/everdries-blue.jpg",
+  brownLifestyle: "/images/everdries-gallery-1.jpg",
   oekoTexBadge: "/images/oeko-tex-badge.svg",
 } as const;
 

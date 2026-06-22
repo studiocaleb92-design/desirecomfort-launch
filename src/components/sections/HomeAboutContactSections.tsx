@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import EditorialSection from "@/components/layout/EditorialSection";
+import { BRAND_NAME } from "@/lib/brand";
 import { HEADER_SCROLL_ANCHOR_CLASS } from "@/lib/productCatalog";
 
 const HomeAboutContactSection = () => (
@@ -12,7 +13,7 @@ const HomeAboutContactSection = () => (
       <div>
         <h2 className="text-heading font-medium text-foreground">About us</h2>
         <p className="mt-4 text-body text-foreground">
-          Desire Comfort™ exists to give you leak confidence without sacrificing how you want to
+          {BRAND_NAME} exists to give you leak confidence without sacrificing how you want to
           look and feel. We design period underwear with real bodies and real schedules in mind —
           soft fabrics, secure layers, and honest sizing.
         </p>

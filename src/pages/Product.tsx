@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useCart } from "@/context/CartContext";
 import { useProductOffer } from "@/context/ProductOfferContext";
 import { CTA_PRIMARY_LABEL, CTA_TRUST_LINE, offerLine } from "@/lib/ctaCopy";
+import { BRAND_NAME } from "@/lib/brand";
 import { PRODUCT_HERO_FALLBACK } from "@/lib/media";
 import ProductVideosSection from "@/components/sections/ProductVideosSection";
 import {
@@ -17,6 +18,13 @@ import {
   PRODUCT_SIZES,
 } from "@/lib/productCatalog";
 import { BUNDLE_OPTIONS, SITE_DISCOUNT_PERCENT } from "@/lib/productPricing";
+import {
+  colorSwatchClass,
+  colorSwatchLabelClass,
+  colorSwatchToggleClass,
+  galleryThumbToggleClass,
+  packSizeToggleClass,
+} from "@/lib/productSelectorStyles";
 import DailyRoutineSection from "@/components/sections/DailyRoutineSection";
 import ComparisonSection from "@/components/sections/ComparisonSection";
 import BenefitsSection from "@/components/sections/BenefitsSection";
@@ -37,19 +45,14 @@ const trustLines = [
   "Secure checkout",
 ];
 
-const toggleClass = (active: boolean) =>
-  cn(
-    "min-h-11 border border-obsidian bg-transparent px-4 py-2 text-sm font-medium text-obsidian transition-colors",
-    active && "border-b-2 border-b-amber-glow",
-  );
-
 const Product = () => {
   const [selectedSize, setSelectedSize] = useState<(typeof PRODUCT_SIZES)[number]>("M");
   const colors = PRODUCT_COLORS.filter((c) => PRIMARY_IMAGE_BY_COLOR[c.name]);
   const [selectedColor, setSelectedColor] = useState(colors[0]?.name ?? "Blush Pink");
   const [activeImage, setActiveImage] = useState(0);
   const { bundleQty, setBundleQty, totals } = useProductOffer();
-  const { addItem, openCart } = useCart();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
 
   const images = COLOR_GALLERY_IMAGES[selectedColor] ?? GALLERY_FALLBACK_DEFAULT;
   const fallbackImages = GALLERY_FALLBACK_BY_COLOR[selectedColor] ?? GALLERY_FALLBACK_DEFAULT;
@@ -59,7 +62,7 @@ const Product = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="page-bottom-safe pt-20 md:pt-24">
+      <main className="page-top-offset page-bottom-safe pb-28 md:pb-32">
         <div className="mx-auto w-full max-w-[1200px] px-3 py-8 md:py-16">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
             <div className="space-y-4">
@@ -67,7 +70,7 @@ const Product = () => {
                 <img
                   key={`${selectedColor}-${activeImage}`}
                   src={images[activeImage]}
-                  alt={`Desire Comfort™ Period Underwear — ${selectedColor}`}
+                  alt={`${BRAND_NAME} Period Underwear — ${selectedColor}`}
                   className="h-full w-full rounded-none object-cover"
                   loading={activeImage === 0 ? "eager" : "lazy"}
                   decoding="async"
@@ -86,12 +89,7 @@ const Product = () => {
                     key={`${selectedColor}-${index}`}
                     type="button"
                     onClick={() => setActiveImage(index)}
-                    className={cn(
-                      "h-20 w-20 flex-shrink-0 overflow-hidden border transition-colors",
-                      activeImage === index
-                        ? "border-obsidian border-b-2 border-b-amber-glow"
-                        : "border-obsidian/20 hover:border-obsidian/50",
-                    )}
+                    className={galleryThumbToggleClass(activeImage === index)}
                   >
                     <img
                       src={img}
@@ -155,7 +153,7 @@ const Product = () => {
                       key={qty}
                       type="button"
                       onClick={() => setBundleQty(qty)}
-                      className={toggleClass(bundleQty === qty)}
+                      className={packSizeToggleClass(bundleQty === qty)}
                     >
                       <span className="block">{label}</span>
                       <span className="mt-0.5 block text-caption text-muted-foreground">{valueLabel}</span>
@@ -175,14 +173,11 @@ const Product = () => {
                         setSelectedColor(color.name);
                         setActiveImage(0);
                       }}
-                      className={cn(
-                        "flex flex-col items-center gap-1.5 border border-transparent px-2 py-1 transition-opacity hover:opacity-80",
-                        selectedColor === color.name && "border-b border-b-amber-glow",
-                      )}
+                      className={colorSwatchToggleClass(selectedColor === color.name)}
                       aria-label={color.name}
                     >
-                      <span className={`block h-8 w-8 rounded-none ${color.swatchClass}`} />
-                      <span className="text-caption text-foreground">{color.name}</span>
+                      <span className={colorSwatchClass(color.swatchClass, selectedColor === color.name)} />
+                      <span className={colorSwatchLabelClass(selectedColor === color.name)}>{color.name}</span>
                     </button>
                   ))}
                 </div>
@@ -204,7 +199,7 @@ const Product = () => {
                       key={size}
                       type="button"
                       onClick={() => setSelectedSize(size)}
-                      className={cn(toggleClass(selectedSize === size), "min-w-12")}
+                      className={cn(packSizeToggleClass(selectedSize === size), "min-w-12")}
                     >
                       {size}
                     </button>
@@ -227,7 +222,7 @@ const Product = () => {
                       packLabel,
                       image: images[0],
                     });
-                    openCart();
+                    navigate("/cart");
                   }}
                 >
                   {CTA_PRIMARY_LABEL}

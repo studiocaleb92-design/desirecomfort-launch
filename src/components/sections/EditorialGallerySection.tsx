@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import EditorialSection from "@/components/layout/EditorialSection";
 import { useStaggerReveal, staggerChildProps } from "@/hooks/useStaggerReveal";
 import { cn } from "@/lib/utils";
 import { IMAGES, PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK } from "@/lib/media";
+import { BRAND_NAME } from "@/lib/brand";
 import { orderHref } from "@/lib/productCatalog";
 
-type GalleryLink =
-  | { type: "order"; color: string }
-  | { type: "product" };
+type GalleryLink = { type: "order"; color: string };
 
 const galleryItems = [
   {
     src: IMAGES.blushPink,
     fallback: PRODUCT_HERO_FALLBACK,
-    alt: "Desire Comfort™ — blush pink",
+    alt: `${BRAND_NAME} — blush pink`,
     caption: "Blush Pink — 4-layer leakproof",
     link: { type: "order", color: "Blush Pink" } satisfies GalleryLink,
     aspect: "aspect-[3/4]",
@@ -21,43 +21,43 @@ const galleryItems = [
     frame: "md:h-[min(520px,68vh)]",
   },
   {
-    src: IMAGES.gallery1,
+    src: IMAGES.brownLifestyle,
     fallback: PRODUCT_HERO_FALLBACK,
-    alt: "4-Layer Leakproof Panties — main",
-    caption: "Main product view",
-    link: { type: "product" } satisfies GalleryLink,
-    aspect: "aspect-[16/10]",
-    grid: "md:col-span-8 md:col-start-5 md:row-start-1",
-    frame: "md:h-[min(360px,46vh)]",
-  },
-  {
-    src: IMAGES.blackBriefs,
-    fallback: PRODUCT_HERO_FALLBACK,
-    alt: "Desire Comfort™ — black briefs",
-    caption: "Black — flat lay",
-    link: { type: "order", color: "Black" } satisfies GalleryLink,
+    alt: `${BRAND_NAME} — brown on-body`,
+    caption: "Brown — on-body fit",
+    link: { type: "order", color: "Brown" } satisfies GalleryLink,
     aspect: "aspect-[4/3]",
     grid: "md:col-span-5 md:col-start-7 md:row-start-2",
     frame: "md:h-[min(280px,36vh)]",
   },
   {
-    src: IMAGES.creamBriefs,
-    fallback: PRODUCT_VARIANTS_FALLBACK,
-    alt: "Desire Comfort™ — cream briefs",
-    caption: "Cream — on-body fit",
-    link: { type: "order", color: "Cream" } satisfies GalleryLink,
+    src: IMAGES.blackBriefs,
+    fallback: PRODUCT_HERO_FALLBACK,
+    alt: `${BRAND_NAME} — black briefs`,
+    caption: "Black — flat lay",
+    link: { type: "order", color: "Black" } satisfies GalleryLink,
     aspect: "aspect-[4/3]",
     grid: "md:col-span-3 md:col-start-1 md:row-start-3",
     frame: "md:h-[min(260px,34vh)]",
   },
   {
+    src: IMAGES.creamBriefs,
+    fallback: PRODUCT_VARIANTS_FALLBACK,
+    alt: `${BRAND_NAME} — cream briefs`,
+    caption: "Cream — on-body fit",
+    link: { type: "order", color: "Cream" } satisfies GalleryLink,
+    aspect: "aspect-[4/3]",
+    grid: "md:col-span-3 md:col-start-4 md:row-start-3",
+    frame: "md:h-[min(260px,34vh)]",
+  },
+  {
     src: IMAGES.blueLifestyle,
     fallback: PRODUCT_VARIANTS_FALLBACK,
-    alt: "Desire Comfort™ — lifestyle",
-    caption: "Everyday comfort",
-    link: { type: "order", color: "Blush Pink" } satisfies GalleryLink,
+    alt: `${BRAND_NAME} — blue lifestyle`,
+    caption: "Blue — everyday comfort",
+    link: { type: "order", color: "Blue" } satisfies GalleryLink,
     aspect: "aspect-[4/3]",
-    grid: "md:col-span-3 md:col-start-10 md:row-start-3",
+    grid: "md:col-span-3 md:col-start-7 md:row-start-3",
     frame: "md:h-[min(260px,34vh)]",
   },
   {
@@ -72,18 +72,25 @@ const galleryItems = [
   },
 ];
 
-const galleryLinkTo = (link: GalleryLink) =>
-  link.type === "product" ? "/product" : orderHref(link.color);
+const captionLinkClass =
+  "inline-block border-b border-obsidian pb-1.5 transition-opacity hover:opacity-80";
 
 const EditorialGallerySection = () => {
   const { containerRef, isVisible } = useStaggerReveal();
 
   return (
     <EditorialSection surface="soft-blush" reveal>
-      <h2 className="text-heading font-medium text-foreground">See the difference</h2>
-      <p className="mt-3 max-w-xl text-body text-muted-foreground">
-        Different angles and styles of our 4-layer leakproof panties.
-      </p>
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="max-w-xl">
+          <h2 className="text-heading font-medium text-foreground">See the difference</h2>
+          <p className="mt-3 text-body text-muted-foreground">
+            Different angles and styles of our 4-layer leakproof panties.
+          </p>
+        </div>
+        <Button variant="outline" size="default" className="shrink-0 self-start md:self-auto" asChild>
+          <Link to="/product">Main product view</Link>
+        </Button>
+      </div>
 
       <div
         ref={containerRef}
@@ -117,10 +124,7 @@ const EditorialGallerySection = () => {
                 />
               </div>
               <figcaption className="mt-4 pt-1 text-caption text-obsidian md:mt-5">
-                <Link
-                  to={galleryLinkTo(item.link)}
-                  className="inline-block border-b border-obsidian pb-1.5 transition-opacity hover:opacity-80"
-                >
+                <Link to={orderHref(item.link.color)} className={captionLinkClass}>
                   {item.caption}
                 </Link>
               </figcaption>

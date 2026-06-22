@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const OrderSuccess = () => (
   <div className="min-h-screen bg-background">
     <Header />
-    <main className="pb-28 pt-20 md:pb-32 md:pt-24">
+    <main className="page-top-offset pb-28 md:pb-32">
       <PageContent className="max-w-lg">
         <h1 className="text-heading font-medium text-foreground">Thank you for your order</h1>
         <p className="mt-4 text-body text-muted-foreground">

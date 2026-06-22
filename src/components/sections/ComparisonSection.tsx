@@ -1,4 +1,5 @@
 import EditorialSection from "@/components/layout/EditorialSection";
+import { BRAND_NAME } from "@/lib/brand";
 
 const rows = [
   { label: "Reusable", us: true, pads: false },
@@ -10,7 +11,7 @@ const rows = [
 const ComparisonSection = () => (
   <EditorialSection surface="soft-blush">
     <div className="max-w-2xl">
-      <h2 className="text-heading font-medium text-foreground">Desire Comfort™ vs pads / diapers</h2>
+      <h2 className="text-heading font-medium text-foreground">{BRAND_NAME} vs pads / diapers</h2>
       <p className="mt-3 text-body text-muted-foreground">
         Same leak security with a slimmer profile — without the plastic feel or constant adjusting.
       </p>
@@ -19,7 +20,7 @@ const ComparisonSection = () => (
     <div className="mt-10 max-w-2xl">
       <div className="grid grid-cols-[1fr_auto_auto] gap-4 border-b border-obsidian/10 pb-3 text-caption font-medium text-muted-foreground">
         <span />
-        <span className="text-foreground">Desire Comfort™</span>
+        <span className="text-foreground">{BRAND_NAME}</span>
         <span>Pads / diapers</span>
       </div>
       {rows.map((row) => (

@@ -1,22 +1,26 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback, type CSSProperties } from "react";
+import { Menu, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BrandLogo from "@/components/BrandLogo";
 import { cn } from "@/lib/utils";
 import { CTA_PRIMARY_LABEL } from "@/lib/ctaCopy";
-import { useHeaderTheme } from "@/hooks/useHeaderTheme";
-
-interface HeaderProps {
-  heroSentinelRef?: React.RefObject<HTMLElement>;
-}
+import { useCart } from "@/context/CartContext";
 
 const MENU_EXIT_MS = 220;
 
-const Header = ({ heroSentinelRef }: HeaderProps) => {
+const iconButtonClass = (textColor: string) =>
+  cn(
+    "flex h-10 w-10 items-center justify-center transition-opacity hover:opacity-80",
+    textColor,
+  );
+
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const location = useLocation();
-  const theme = useHeaderTheme({ heroSentinelRef });
+  const { items } = useCart();
+  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   const navLinks = [
     { to: "/", label: "Home", hashMatch: "" },
@@ -57,38 +61,51 @@ const Header = ({ heroSentinelRef }: HeaderProps) => {
     };
   }, [isMenuOpen, isMenuClosing]);
 
-  const isOverHero = theme === "overHero";
-  const textColor = isOverHero ? "text-obsidian" : "text-foreground";
-  const headerBg = isOverHero ? "" : "bg-background/95";
-  const showHeaderBorder = !isOverHero;
   const showMenu = isMenuOpen || isMenuClosing;
 
   return (
     <>
       <header
         className={cn(
-          "fixed left-0 right-0 top-0 z-50 border-b transition-colors duration-300",
-          showHeaderBorder ? "border-muted-gold" : "border-transparent",
-          headerBg,
+          "fixed left-0 right-0 z-50 bg-white transition-[top] duration-300",
+          "top-[var(--sticky-cta-offset,0px)]",
         )}
       >
         <div className="mx-auto w-full max-w-[1200px] px-3">
-          <div className="flex h-16 items-center justify-between md:h-18">
-            <Link to="/" className="transition-opacity hover:opacity-80">
-              <BrandLogo />
-            </Link>
-
+          <div className="relative flex h-16 items-center md:h-18">
             <button
+              type="button"
               onClick={openMenu}
-              className={cn(
-                "text-caption font-normal transition-colors hover:opacity-80",
-                textColor,
-              )}
+              className={cn(iconButtonClass("text-foreground"), "relative z-10")}
               aria-label="Open menu"
               aria-expanded={isMenuOpen}
             >
-              Menu
+              <Menu className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
             </button>
+
+            <Link
+              to="/"
+              className="absolute left-1/2 -translate-x-1/2 transition-opacity hover:opacity-80"
+            >
+              <BrandLogo />
+            </Link>
+
+            <div className="relative z-10 ml-auto flex items-center">
+              <Link
+                to="/cart"
+                className={cn(iconButtonClass("text-foreground"), "relative")}
+                aria-label={
+                  cartItemCount > 0 ? `Open cart, ${cartItemCount} items` : "Open cart"
+                }
+              >
+                <ShoppingBag className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
+                {cartItemCount > 0 && (
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-obsidian px-1 text-[10px] font-medium leading-none text-warm-parchment">
+                    {cartItemCount > 9 ? "9+" : cartItemCount}
+                  </span>
+                )}
+              </Link>
+            </div>
           </div>
         </div>
       </header>

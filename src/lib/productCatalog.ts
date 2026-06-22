@@ -13,6 +13,8 @@ export const PRODUCT_COLORS: ProductColor[] = [
   { name: "Blush Pink", swatchClass: "bg-[hsl(355,45%,70%)]" },
   { name: "Dusty Rose", swatchClass: "bg-[hsl(355,40%,55%)]" },
   { name: "Cream", swatchClass: "bg-[hsl(40,40%,90%)]" },
+  { name: "Brown", swatchClass: "bg-[hsl(25,40%,32%)]" },
+  { name: "Blue", swatchClass: "bg-[hsl(210,35%,55%)]" },
   { name: "Black", swatchClass: "bg-[hsl(0,0%,15%)]" },
   { name: "White", swatchClass: "bg-white border border-border" },
 ];
@@ -21,6 +23,8 @@ export const PRIMARY_IMAGE_BY_COLOR: Record<string, string> = {
   "Blush Pink": IMAGES.blushPink,
   "Dusty Rose": IMAGES.dustyRose,
   Cream: IMAGES.cream,
+  Brown: IMAGES.brownLifestyle,
+  Blue: IMAGES.blueLifestyle,
   Black: IMAGES.black,
   White: IMAGES.everdriesWhite,
 };
@@ -30,6 +34,8 @@ export const COLOR_GALLERY_IMAGES: Record<string, string[]> = {
   "Blush Pink": [IMAGES.blushPink, IMAGES.gallery2, IMAGES.gallery3],
   "Dusty Rose": [IMAGES.dustyRose, IMAGES.gallery2, IMAGES.gallery3],
   Cream: [IMAGES.cream, IMAGES.creamBriefs, IMAGES.gallery2],
+  Brown: [IMAGES.brownLifestyle, IMAGES.gallery2, IMAGES.gallery3],
+  Blue: [IMAGES.blueLifestyle, IMAGES.gallery2, IMAGES.gallery3],
   Black: [IMAGES.black, IMAGES.blackBriefs, IMAGES.gallery4],
   White: [IMAGES.everdriesWhite, IMAGES.cream, IMAGES.gallery2],
 };
@@ -38,6 +44,8 @@ export const GALLERY_FALLBACK_BY_COLOR: Record<string, string[]> = {
   "Blush Pink": [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.blushPink],
   "Dusty Rose": [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.dustyRose],
   Cream: [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.cream],
+  Brown: [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.brownLifestyle],
+  Blue: [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.blueLifestyle],
   Black: [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.black],
   White: [PRODUCT_HERO_FALLBACK, PRODUCT_VARIANTS_FALLBACK, IMAGES.everdriesWhite],
 };

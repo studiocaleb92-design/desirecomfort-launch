@@ -13,9 +13,6 @@ export interface CartItem {
 
 interface CartContextValue {
   items: CartItem[];
-  isOpen: boolean;
-  openCart: () => void;
-  closeCart: () => void;
   addItem: (item: Omit<CartItem, "id">) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
@@ -30,10 +27,6 @@ function generateId() {
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openCart = useCallback(() => setIsOpen(true), []);
-  const closeCart = useCallback(() => setIsOpen(false), []);
 
   const addItem = useCallback((item: Omit<CartItem, "id">) => {
     setItems((prev) => {
@@ -42,16 +35,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           i.title === item.title &&
           i.color === item.color &&
           i.size === item.size &&
-          i.packLabel === item.packLabel
+          i.packLabel === item.packLabel,
       );
       if (existing) {
         return prev.map((i) =>
-          i.id === existing.id ? { ...i, quantity: i.quantity + item.quantity } : i
+          i.id === existing.id ? { ...i, quantity: i.quantity + item.quantity } : i,
         );
       }
       return [...prev, { ...item, id: generateId() }];
     });
-    setIsOpen(true);
   }, []);
 
   const removeItem = useCallback((id: string) => {
@@ -67,9 +59,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const value: CartContextValue = {
     items,
-    isOpen,
-    openCart,
-    closeCart,
     addItem,
     removeItem,
     updateQuantity,
