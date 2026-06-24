@@ -12,8 +12,6 @@ package-lock.json
 dist
 dist-ssr
 *.local
-.env
-.env.local
 .env.*.local
 
 # Cursor MCP config (may contain tokens)
@@ -26,7 +24,6 @@ dist-ssr
 !.cursor/rules/**
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
@@ -35,3 +32,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+config.bat

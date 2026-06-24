@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import EditorialSection from "@/components/layout/EditorialSection";
 import { CTA_PRIMARY_LABEL, CTA_TRUST_LINE, offerLine } from "@/lib/ctaCopy";
+import { useOfferCountdown } from "@/hooks/useOfferCountdown";
 import { BRAND_NAME } from "@/lib/brand";
 import { PRODUCT_HERO_FALLBACK } from "@/lib/media";
 import { useCart } from "@/context/CartContext";
@@ -40,6 +41,7 @@ const FeaturedProductSection = () => {
   const { bundleQty, setBundleQty, totals } = useProductOffer();
   const { addItem } = useCart();
   const navigate = useNavigate();
+  const { formatted: countdown } = useOfferCountdown();
 
   useEffect(() => {
     const color = new URLSearchParams(search).get(COLOR_QUERY_PARAM);
@@ -61,7 +63,7 @@ const FeaturedProductSection = () => {
       <div className="mb-10 max-w-2xl">
         <h2 className="text-heading font-medium text-foreground">4-Layer Leakproof Panties</h2>
         <p className="mt-3 text-body text-muted-gold">
-          4-layer leakproof panties · {offerLine(SITE_DISCOUNT_PERCENT)}
+          4-layer leakproof panties · {offerLine(SITE_DISCOUNT_PERCENT, countdown)}
         </p>
       </div>
 
