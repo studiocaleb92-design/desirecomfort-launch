@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/context/CartContext";
 import { ProductOfferProvider } from "@/context/ProductOfferContext";
+import ScrollToTop from "@/components/ScrollToTop";
 import StickyCtaBar from "@/components/StickyCtaBar";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
@@ -29,6 +30,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <CartProvider>
           <ProductOfferProvider>
             <StickyCtaBar />
