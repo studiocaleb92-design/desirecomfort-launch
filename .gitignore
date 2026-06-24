@@ -12,8 +12,6 @@ package-lock.json
 dist
 dist-ssr
 *.local
-.env
-.env.local
 .env.*.local
 
 # Cursor MCP config (may contain tokens)
@@ -35,3 +33,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+config.bat

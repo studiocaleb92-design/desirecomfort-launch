@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { usePostHeroVisible } from "@/hooks/usePostHeroVisible";
-import { PROMO_BANNER_TEXT } from "@/lib/ctaCopy";
+import { promoBannerWithCountdown } from "@/lib/ctaCopy";
+import { useOfferCountdown } from "@/hooks/useOfferCountdown";
 import { cn } from "@/lib/utils";
 
 const StickyCtaBar = () => {
   const visible = usePostHeroVisible();
+  const { formatted: countdown } = useOfferCountdown();
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +49,9 @@ const StickyCtaBar = () => {
       aria-hidden={!visible}
     >
       <div className="mx-auto w-full max-w-[1200px] px-3 py-2.5 text-center sm:py-3">
-        <p className="text-caption font-medium text-foreground sm:text-body">{PROMO_BANNER_TEXT}</p>
+        <p className="text-caption font-medium text-foreground sm:text-body">
+          {promoBannerWithCountdown(countdown)}
+        </p>
       </div>
     </div>
   );
