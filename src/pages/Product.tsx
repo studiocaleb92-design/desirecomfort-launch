@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { useCart } from "@/context/CartContext";
 import { useProductOffer } from "@/context/ProductOfferContext";
 import { CTA_PRIMARY_LABEL, CTA_TRUST_LINE, offerLine } from "@/lib/ctaCopy";
+import { useOfferCountdown } from "@/hooks/useOfferCountdown";
 import { BRAND_NAME } from "@/lib/brand";
 import { PRODUCT_HERO_FALLBACK } from "@/lib/media";
 import ProductVideosSection from "@/components/sections/ProductVideosSection";
@@ -53,6 +54,7 @@ const Product = () => {
   const { bundleQty, setBundleQty, totals } = useProductOffer();
   const { addItem } = useCart();
   const navigate = useNavigate();
+  const { formatted: countdown } = useOfferCountdown();
 
   const images = COLOR_GALLERY_IMAGES[selectedColor] ?? GALLERY_FALLBACK_DEFAULT;
   const fallbackImages = GALLERY_FALLBACK_BY_COLOR[selectedColor] ?? GALLERY_FALLBACK_DEFAULT;
@@ -117,7 +119,7 @@ const Product = () => {
 
               <h1 className="text-heading font-medium text-foreground">{PRODUCT_TITLE}</h1>
               <p className="mt-3 text-body text-muted-gold">
-                4-layer leakproof panties · {offerLine(SITE_DISCOUNT_PERCENT)}
+                4-layer leakproof panties · {offerLine(SITE_DISCOUNT_PERCENT, countdown)}
               </p>
               <p className="mt-2 text-caption text-muted-gold">4.9/5 from 2,500+ reviews</p>
 
